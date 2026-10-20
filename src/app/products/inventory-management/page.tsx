@@ -1,7 +1,11 @@
 import { CapabilityGrid, ProcessSteps } from "@/components/Blocks";
 import { FAQ } from "@/components/FAQ";
 import { InquiryForm } from "@/components/InquiryForm";
+import { BookDemo } from "@/components/BookDemo";
+import { FloatingArrows } from "@/components/Illustrations";
 import { InventoryMockup } from "@/components/InventoryMockup";
+import { ProductTour } from "@/components/ProductTour";
+import { IconTile } from "@/lib/icons";
 import { PageHero } from "@/components/PageHero";
 import { ArrowMark } from "@/components/ui/ArrowMark";
 import { ButtonLink } from "@/components/ui/Button";
@@ -31,7 +35,8 @@ const faqs = [
   { q: "What is Anovate Inventory?", a: "A cloud-based inventory management system, offered by subscription, that helps product-based businesses manage products, stock levels, purchase records, sales records and inventory reporting." },
   { q: "Who is it designed for?", a: "Businesses that buy, hold and sell physical products, including retailers, wholesalers, distributors, warehouses, manufacturers, ecommerce sellers and pharmacies." },
   { q: "Do I need to install anything?", a: "No. Anovate Inventory is cloud-based and runs in a web browser, so there are no servers to install or maintain." },
-  { q: "How much does it cost?", a: "Subscription plans and billing terms are listed in the plans section on this page. Request access and we'll share current plan details for your business." },
+  { q: "How much does it cost?", a: "Plans are priced by the size of your operation. Book a demo and we'll share current plan details for your business." },
+  { q: "How do I see the software before subscribing?", a: "Book a live demo using the scheduler on this page. We'll walk you through the product and answer your questions." },
   { q: "Can I move my existing stock data into the system?", a: "Tell us how you manage stock today when you request access, and we'll explain the options for getting your products and opening stock into the system." },
   { q: "Is this the same as your custom ERP development?", a: "No. Anovate Inventory is a ready-to-use subscription product. ERP and CRM solutions are custom development services built for each client." },
 ];
@@ -90,6 +95,13 @@ export default function InventoryPage() {
       </Section>
 
       {/* Features */}
+      {/* Product tour */}
+      <Section tone="deep" labelledBy="tour-title">
+        <FloatingArrows count={5} />
+        <SectionHeading dark id="tour-title" eyebrow="Product tour" title={<>See it in action, <span className="text-gradient-mint">screen by screen.</span></>} lede="A quick look at the main areas of Anovate Inventory." />
+        <div className="mt-14"><ProductTour /></div>
+      </Section>
+
       <Section tone="mist" id="features" labelledBy="features-title">
         <SectionHeading id="features-title" eyebrow="Features" title="Everything you need to keep stock under control." />
         <div className="mt-12"><CapabilityGrid items={inventoryFeatures} columns={4} /></div>
@@ -120,8 +132,9 @@ export default function InventoryPage() {
         <SectionHeading id="for-title" eyebrow="Who it's for" title="Built for businesses that move physical products." />
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {inventoryAudiences.map((a, i) => (
-            <li key={a.title} data-reveal style={{ ["--reveal-delay" as string]: `${(i % 4) * 60}ms` }} className="rounded-[var(--radius-lg)] border border-line p-6 transition-colors hover:border-mint-ink/40">
-              <h3 className="font-sans text-base font-semibold text-forest-900">{a.title}</h3>
+            <li key={a.title} data-reveal style={{ ["--reveal-delay" as string]: `${(i % 4) * 60}ms` }} className="group hover-lift rounded-[var(--radius-lg)] border border-line p-6 hover:border-mint-ink/40 hover:shadow-[var(--shadow-lift)]">
+              <IconTile title={a.title} />
+              <h3 className="mt-4 font-sans text-base font-semibold text-forest-900">{a.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-muted">{a.body}</p>
             </li>
           ))}
@@ -144,7 +157,7 @@ export default function InventoryPage() {
               data-reveal
               style={{ ["--reveal-delay" as string]: `${i * 80}ms` }}
               className={`relative flex flex-col rounded-[var(--radius-xl)] p-8 ${
-                p.highlighted ? "bg-forest-900 text-white shadow-[var(--shadow-glow)]" : "border border-line bg-white shadow-[var(--shadow-card)]"
+                p.highlighted ? "border-glow bg-forest-900 text-white shadow-[var(--shadow-glow)] lg:-translate-y-3" : "hover-lift border border-line bg-white shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-lift)]"
               }`}
             >
               {p.highlighted && <ArrowMark className="absolute right-6 top-6 size-6" />}
@@ -183,7 +196,7 @@ export default function InventoryPage() {
         </ul>
         <div data-reveal className="mx-auto mt-10 flex max-w-3xl flex-wrap items-center justify-center gap-x-6 gap-y-3 text-center text-sm text-muted">
           <span className="inline-flex items-center gap-2">Free trial: {product.trial ?? <Pending />}</span>
-          <span className="inline-flex items-center gap-2">Live demo: {product.demoUrl ? <a className="font-semibold text-mint-ink underline" href={product.demoUrl}>Open demo</a> : <Pending />}</span>
+          <span className="inline-flex items-center gap-2">Live demo: <a className="font-semibold text-mint-ink underline underline-offset-2" href="#book-demo">Book a demo</a></span>
           <span className="inline-flex items-center gap-2">Integrations: {product.integrations.length ? product.integrations.join(", ") : <Pending />}</span>
         </div>
       </Section>
@@ -191,36 +204,39 @@ export default function InventoryPage() {
       <FAQ faqs={faqs} tone="light" title="Inventory software FAQs" />
 
       {/* Get started */}
-      <section id="get-started" aria-labelledby="start-title" className="relative isolate overflow-hidden bg-forest-900 text-white">
+      <section id="book-demo" aria-labelledby="start-title" className="relative isolate overflow-hidden bg-forest-900 text-white">
         <div aria-hidden className="bg-grid-dark absolute inset-0 -z-10 opacity-70" />
         <div aria-hidden className="brand-streak top-0" />
+        <FloatingArrows count={4} />
         <div className="container-x grid gap-14 py-20 sm:py-24 lg:grid-cols-[1fr_1.1fr] lg:py-28">
           <div>
-            <Eyebrow dark>Get started</Eyebrow>
+            <Eyebrow dark>Book a demo</Eyebrow>
             <h2 id="start-title" className="mt-5 text-3xl font-semibold leading-tight sm:text-5xl">
               Get your stock <span className="text-gradient-mint">under control.</span>
             </h2>
             <p className="mt-6 max-w-md text-lg leading-relaxed text-muted-dark">
-              Tell us a little about your business. We&apos;ll share plan details and help you get set up with {product.name}.
+              See {product.name} working with a live walkthrough. We&apos;ll share plan details for your business and help you get set up.
             </p>
             <ul className="mt-8 space-y-3 text-white/85">
-              {["Cloud-based, nothing to install", "Plans for different business sizes", "Guidance on getting started"].map((t) => (
+              {["Live walkthrough of the product", "Cloud-based, nothing to install", "Plan details for your business size"].map((t) => (
                 <li key={t} className="flex items-start gap-3"><ArrowMark className="mt-1.5 size-3 shrink-0" />{t}</li>
               ))}
             </ul>
           </div>
           <div className="rounded-[var(--radius-xl)] border border-white/10 bg-forest-950/60 p-6 backdrop-blur-sm sm:p-9">
-            {product.signupUrl ? (
-              <div>
-                <p className="text-xl font-semibold">Ready to subscribe?</p>
-                <p className="mt-2 text-muted-dark">Create your account and choose a plan.</p>
-                <div className="mt-6"><ButtonLink href={product.signupUrl} target="_blank" rel="noopener" size="lg">Start subscription</ButtonLink></div>
-                <hr className="my-8 border-white/10" />
-                <p className="mb-6 text-sm text-muted-dark">Have questions first? Send us a message.</p>
-                <InquiryForm kind="product" dark />
-              </div>
+            {site.calendlyUrl ? (
+              <>
+                <BookDemo url={site.calendlyUrl} />
+                <details className="group mt-8 border-t border-white/10 pt-6">
+                  <summary className="cursor-pointer list-none text-sm font-semibold text-mint-400 [&::-webkit-details-marker]:hidden">Prefer to send a message instead?</summary>
+                  <div className="mt-6"><InquiryForm kind="product" dark /></div>
+                </details>
+              </>
             ) : (
-              <InquiryForm kind="product" dark />
+              <>
+                <p className="mb-6 font-display text-xl font-semibold">Request a demo</p>
+                <InquiryForm kind="product" dark />
+              </>
             )}
           </div>
         </div>

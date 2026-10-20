@@ -1,4 +1,5 @@
 import { CTABand } from "@/components/CTABand";
+import { OpsFlow } from "@/components/Illustrations";
 import { PageHero } from "@/components/PageHero";
 import { ServiceRows } from "@/components/ServiceRows";
 import { ArrowMark } from "@/components/ui/ArrowMark";
@@ -25,6 +26,7 @@ export default function SolutionsPage() {
         highlight="a clear view of your operations."
         lede="Custom CRM and ERP solutions that organise customers, sales, purchasing and operations, plus cloud software you can subscribe to today."
         crumbs={[{ name: "Solutions", path: "/solutions" }]}
+        aside={<OpsFlow />}
         actions={<ButtonLink href="/contact?interest=crm" size="lg">{site.cta.consult}</ButtonLink>}
       />
       <Section tone="light" labelledBy="custom-title">
@@ -34,7 +36,7 @@ export default function SolutionsPage() {
       <Section tone="mist" labelledBy="compare-title">
         <SectionHeading id="compare-title" eyebrow="Choosing the right route" title="Custom solution or subscription software?" />
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
-          <article data-reveal className="rounded-[var(--radius-xl)] border border-line bg-white p-8 sm:p-10">
+          <article data-reveal="left" className="hover-lift rounded-[var(--radius-xl)] border border-line bg-white p-8 hover:shadow-[var(--shadow-lift)] sm:p-10">
             <p className="text-sm font-semibold text-mint-ink">Custom development</p>
             <h3 className="mt-2 text-2xl font-semibold text-forest-900">Built around your processes</h3>
             <ul className="mt-6 space-y-3 text-muted">
@@ -44,7 +46,7 @@ export default function SolutionsPage() {
             </ul>
             <div className="mt-8"><ButtonLink href="/contact" variant="dark">{site.cta.project}</ButtonLink></div>
           </article>
-          <article data-reveal className="rounded-[var(--radius-xl)] bg-forest-900 p-8 text-white sm:p-10">
+          <article data-reveal="right" className="hover-lift rounded-[var(--radius-xl)] bg-forest-900 p-8 text-white hover:shadow-[var(--shadow-glow)] sm:p-10">
             <p className="text-sm font-semibold text-mint-400">Subscription software</p>
             <h3 className="mt-2 text-2xl font-semibold">Ready to use, by subscription</h3>
             <ul className="mt-6 space-y-3 text-muted-dark">

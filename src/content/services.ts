@@ -38,7 +38,7 @@ export const services: ServicePage[] = [
     meta: {
       title: "Staff Augmentation & Dedicated Development Teams",
       description:
-        "Extend your engineering capacity with dedicated developers, designers and QA engineers from Anovate Systems. Individual specialists or full teams for businesses and agencies in the US, UAE and beyond.",
+        "Extend your engineering capacity with dedicated developers, designers and QA engineers from Anovate System. Individual specialists or full teams for businesses and agencies in the US, UAE and beyond.",
     },
     hero: {
       eyebrow: "Staff augmentation",
@@ -106,7 +106,7 @@ export const services: ServicePage[] = [
     meta: {
       title: "Custom Software Development",
       description:
-        "Web applications, business software, SaaS products, APIs and workflow automation built around how your business actually works. Custom software development by Anovate Systems.",
+        "Web applications, business software, SaaS products, APIs and workflow automation built around how your business actually works. Custom software development by Anovate System.",
     },
     hero: {
       eyebrow: "Custom software development",

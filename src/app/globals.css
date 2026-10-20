@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /*
- * Anovate Systems design tokens.
+ * Anovate System design tokens.
  * Sampled from the supplied brand files:
  *   logo letters      #015146
  *   symbol background #013D35
@@ -183,6 +183,95 @@
 .animate-streak { animation: streak-pulse 5s ease-in-out infinite; }
 .animate-fade-up { animation: fade-up 0.8s var(--ease-out-brand) both; }
 
+/* ---------- Extended motion ---------- */
+
+/* Reveal variants */
+.js [data-reveal="left"] { transform: translate3d(-28px, 0, 0); }
+.js [data-reveal="right"] { transform: translate3d(28px, 0, 0); }
+.js [data-reveal="scale"] { transform: scale(0.95); }
+.js [data-reveal].is-visible { transform: none; }
+
+/* Card lift + icon response */
+.hover-lift { transition: transform 0.45s var(--ease-out-brand), box-shadow 0.45s var(--ease-out-brand), border-color 0.3s; }
+.hover-lift:hover { transform: translate3d(0, -4px, 0); }
+.icon-tile { transition: box-shadow 0.4s var(--ease-out-brand), background-color 0.3s; }
+.group:hover .icon-tile { box-shadow: 0 0 0 6px rgb(63 252 170 / 0.12), 0 10px 24px -10px rgb(63 252 170 / 0.6); }
+.group:hover .icon-tile svg { transform: scale(1.12) rotate(-6deg); }
+
+@keyframes float-slow {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -10px, 0); }
+}
+@keyframes float-slow-alt {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, 8px, 0); }
+}
+/* Small brand arrows rising up-and-right through dark sections */
+@keyframes drift-up {
+  0% { opacity: 0; transform: translate3d(0, 40px, 0) scale(0.7); }
+  15% { opacity: 0.45; }
+  85% { opacity: 0.3; }
+  100% { opacity: 0; transform: translate3d(60px, -220px, 0) scale(1); }
+}
+@keyframes bar-grow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+@keyframes dash-flow { to { stroke-dashoffset: -40; } }
+@keyframes caret { 50% { opacity: 0; } }
+@keyframes type-line { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes marquee { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgb(63 252 170 / 0.55); }
+  80%, 100% { box-shadow: 0 0 0 14px rgb(63 252 170 / 0); }
+}
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+@keyframes shimmer { from { background-position: -200% 0; } to { background-position: 200% 0; } }
+@keyframes pop-in {
+  0% { opacity: 0; transform: translate3d(0, 10px, 0) scale(0.92); }
+  100% { opacity: 1; transform: none; }
+}
+
+.animate-float { animation: float-slow 6s ease-in-out infinite; }
+.animate-float-alt { animation: float-slow-alt 7s ease-in-out infinite; }
+.animate-drift { animation: drift-up 9s linear infinite; }
+.animate-dash { stroke-dasharray: 6 6; animation: dash-flow 1.6s linear infinite; }
+.animate-caret { animation: caret 1s step-end infinite; }
+.animate-pulse-ring { animation: pulse-ring 2.4s ease-out infinite; }
+.animate-spin-slow { animation: spin-slow 18s linear infinite; }
+.animate-pop { animation: pop-in 0.6s var(--ease-out-brand) both; }
+
+/* Elements that animate only once their [data-reveal] ancestor is visible */
+.js [data-reveal] .grow-bar { transform: scaleY(0); transform-origin: bottom; }
+.js [data-reveal].is-visible .grow-bar { animation: bar-grow 1s var(--ease-out-brand) both; animation-delay: var(--d, 0ms); }
+.js [data-reveal] .type-line { clip-path: inset(0 100% 0 0); }
+.js [data-reveal].is-visible .type-line { animation: type-line 0.9s steps(24, end) both; animation-delay: var(--d, 0ms); }
+.js [data-reveal] .pop { opacity: 0; }
+.js [data-reveal].is-visible .pop { animation: pop-in 0.6s var(--ease-out-brand) both; animation-delay: var(--d, 0ms); }
+
+.marquee { mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent); }
+.marquee-track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+
+/* Animated gradient border, used for the highlighted plan */
+.border-glow { position: relative; }
+.border-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(110deg, transparent 20%, rgb(63 252 170 / 0.9) 45%, transparent 70%) 0 0 / 200% 100%;
+  animation: shimmer 4s linear infinite;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+  .js [data-reveal] .grow-bar, .js [data-reveal] .type-line, .js [data-reveal] .pop { transform: none; clip-path: none; opacity: 1; }
+  .animate-drift { display: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after {
@@ -192,3 +281,5 @@
   }
   .js [data-reveal] { opacity: 1; transform: none; }
 }
+
+@keyframes progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }

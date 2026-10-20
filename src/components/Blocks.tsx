@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Block } from "@/content/services";
+import { IconTile, iconFor } from "@/lib/icons";
 import { ArrowMark } from "./ui/ArrowMark";
 
 /** Numbered delivery steps joined by a forward-moving rail. */
@@ -9,7 +10,7 @@ export function ProcessSteps({ steps, dark }: { steps: Block[]; dark?: boolean }
     <ol className={`relative grid gap-x-6 gap-y-10 sm:grid-cols-2 ${cols}`}>
       <span aria-hidden className={`absolute left-0 right-0 top-[1.1rem] hidden h-px lg:block ${dark ? "bg-white/10" : "bg-line"}`} />
       {steps.map((s, i) => (
-        <li key={s.title} data-reveal style={{ ["--reveal-delay" as string]: `${i * 70}ms` }} className="relative">
+        <li key={s.title} data-reveal style={{ ["--reveal-delay" as string]: `${i * 70}ms` }} className="group relative">
           <div className="flex items-center gap-3">
             <span
               className={`relative z-10 grid size-9 place-items-center rounded-full font-display text-sm font-semibold ${
@@ -18,7 +19,11 @@ export function ProcessSteps({ steps, dark }: { steps: Block[]; dark?: boolean }
             >
               {String(i + 1).padStart(2, "0")}
             </span>
-            {i < steps.length - 1 && <ArrowMark tone="mono" className={`hidden size-3 lg:block ${dark ? "text-mint-400/60" : "text-mint-ink/60"}`} />}
+            {iconFor(s.title) ? (
+              <IconTile title={s.title} dark={dark} size="sm" className={dark ? "" : "!bg-mint-400/15 !text-mint-ink"} />
+            ) : (
+              i < steps.length - 1 && <ArrowMark tone="mono" className={`hidden size-3 lg:block ${dark ? "text-mint-400/60" : "text-mint-ink/60"}`} />
+            )}
           </div>
           <h3 className={`mt-5 text-lg font-semibold ${dark ? "text-white" : "text-forest-900"}`}>{s.title}</h3>
           <p className={`mt-2 text-[0.9375rem] leading-relaxed ${dark ? "text-muted-dark" : "text-muted"}`}>{s.body}</p>
@@ -40,7 +45,11 @@ export function CapabilityGrid({ items, dark, columns = 3, tail }: { items: Bloc
           style={{ ["--reveal-delay" as string]: `${(i % 4) * 60}ms` }}
           className={`group relative p-7 transition-colors duration-300 ${dark ? "bg-forest-900 hover:bg-forest-850" : "bg-white hover:bg-mist"}`}
         >
-          <ArrowMark tone={dark ? "mint" : "mono"} className={`arrow-nudge size-4 ${dark ? "" : "text-mint-ink"}`} />
+          {iconFor(it.title) ? (
+            <IconTile title={it.title} dark={dark} />
+          ) : (
+            <ArrowMark tone={dark ? "mint" : "mono"} className={`arrow-nudge size-4 ${dark ? "" : "text-mint-ink"}`} />
+          )}
           <h3 className={`mt-5 text-lg font-semibold ${dark ? "text-white" : "text-forest-900"}`}>{it.title}</h3>
           <p className={`mt-2 text-[0.9375rem] leading-relaxed ${dark ? "text-muted-dark" : "text-muted"}`}>{it.body}</p>
         </li>

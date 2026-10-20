@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { site } from "@/content/site";
 import { budgetOptions, businessTypeOptions, type Inquiry, interestOptions, labelFor, normalise, timelineOptions, validate } from "@/lib/inquiry";
 
 export const runtime = "nodejs";
@@ -40,7 +41,7 @@ function summary(d: Inquiry) {
           ["Page", d.source || "—"],
         ]
       : [
-          ["Type", "Inventory software access request"],
+          ["Type", "Inventory demo request"],
           ["Name", d.name],
           ["Email", d.email],
           ["Business", d.company],
@@ -52,7 +53,7 @@ function summary(d: Inquiry) {
 
 async function deliver(d: Inquiry): Promise<"sent" | "unconfigured"> {
   const { rows, message } = summary(d);
-  const subject = d.kind === "project" ? `New inquiry: ${labelFor(interestOptions, d.interest)} — ${d.name}` : `Inventory access request — ${d.company}`;
+  const subject = d.kind === "project" ? `New inquiry: ${labelFor(interestOptions, d.interest)} — ${d.name}` : `Inventory demo request — ${d.company}`;
 
   const key = process.env.RESEND_API_KEY;
   const to = process.env.CONTACT_TO_EMAIL;
@@ -111,11 +112,11 @@ export async function POST(req: Request) {
         });
       }
       console.error("[contact] Delivery not configured — inquiry could not be delivered.");
-      return NextResponse.json({ ok: false, error: "Our inquiry form is temporarily unavailable. Please try again later." }, { status: 503 });
+      return NextResponse.json({ ok: false, error: `Our inquiry form is temporarily unavailable. Please email us at ${site.contact.email ?? "our team"}.` }, { status: 503 });
     }
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[contact] Delivery failed:", err instanceof Error ? err.message : err);
-    return NextResponse.json({ ok: false, error: "We couldn't send your message just now. Please try again shortly." }, { status: 502 });
+    return NextResponse.json({ ok: false, error: `We couldn't send your message just now. Please try again shortly or email ${site.contact.email ?? "us"}.` }, { status: 502 });
   }
 }

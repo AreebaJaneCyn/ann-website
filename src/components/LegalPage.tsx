@@ -9,7 +9,7 @@ export function LegalPage({ title, path, updated, children }: { title: string; p
       <Section tone="light">
         <div className="mx-auto max-w-3xl">
           <p className="rounded-[var(--radius-md)] border border-dashed border-amber-600/40 bg-amber-50 p-4 text-sm leading-relaxed text-amber-900">
-            <strong>Draft for review.</strong> This document is a starting template written to reflect how this website currently works. It must be reviewed by a qualified legal adviser, and completed with Anovate Systems&apos; registered legal entity details and contact information, before launch.
+            <strong>Draft for review.</strong> This document is a starting template written to reflect how this website currently works. It must be reviewed by a qualified legal adviser, and completed with Anovate System&apos;s registered legal entity details and contact information, before launch.
           </p>
           <div className="prose-anovate mt-8">{children}</div>
         </div>

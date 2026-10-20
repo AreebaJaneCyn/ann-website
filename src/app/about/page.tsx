@@ -1,16 +1,18 @@
 import Image from "next/image";
 import { CapabilityGrid } from "@/components/Blocks";
 import { CTABand } from "@/components/CTABand";
+import { FloatingArrows } from "@/components/Illustrations";
 import { PageHero } from "@/components/PageHero";
+import { TimezoneClocks } from "@/components/TimezoneClocks";
 import { ButtonLink } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "About Anovate Systems",
+  title: "About Anovate System",
   description:
-    "Anovate Systems is a software engineering and technology solutions company providing dedicated development teams, custom software, mobile apps and cloud business software.",
+    "Anovate System is a software engineering and technology solutions company providing dedicated development teams, custom software, mobile apps and cloud business software.",
   path: "/about",
 });
 
@@ -28,7 +30,7 @@ export default function AboutPage() {
         eyebrow="About us"
         title="We build technology"
         highlight="that moves businesses forward."
-        lede="Anovate Systems is a technology company focused on software engineering, product development, staff augmentation, business systems and cloud-based software."
+        lede="Anovate System is a technology company focused on software engineering, product development, staff augmentation, business systems and cloud-based software."
         crumbs={[{ name: "About", path: "/about" }]}
       />
       <Section tone="light" labelledBy="mission-title">
@@ -47,14 +49,19 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-          <div data-reveal className="relative aspect-[4/3] overflow-hidden rounded-[var(--radius-xl)] bg-forest-900">
-            <Image src="/brand/anovate-symbol-bg.webp" alt="Anovate Systems brand symbol" fill sizes="(min-width:1024px) 45vw, 100vw" className="object-cover object-[55%_45%]" />
+          <div data-reveal="right" className="group relative aspect-[4/3] overflow-hidden rounded-[var(--radius-xl)] bg-forest-900">
+            <Image src="/brand/anovate-symbol-crop.webp" alt="Anovate System brand symbol" fill sizes="(min-width:1024px) 45vw, 100vw" className="object-cover object-[50%_40%] transition-transform duration-[1.5s] group-hover:scale-105" />
           </div>
         </div>
       </Section>
       <Section tone="mist" labelledBy="principles-title">
         <SectionHeading id="principles-title" eyebrow="How we work" title="The principles behind our work" />
         <div className="mt-12"><CapabilityGrid items={principles} columns={4} /></div>
+      </Section>
+      <Section tone="deep" labelledBy="tz-title" grid>
+        <FloatingArrows count={4} />
+        <SectionHeading dark id="tz-title" eyebrow="Across time zones" title="Working hours that overlap with yours." lede="We work with teams in the United States, the UAE and Pakistan, and agree working-hour overlap at the start of every engagement." />
+        <div className="mt-12"><TimezoneClocks /></div>
       </Section>
       <Section tone="dark" labelledBy="name-title">
         <div className="mx-auto max-w-3xl text-center">

@@ -72,7 +72,7 @@ export function Header() {
       <div ref={navRef} className="container-x flex h-[4.5rem] items-center justify-between gap-6">
         <Logo priority className="h-9 w-auto sm:h-11" />
 
-        <nav aria-label="Main" className="hidden lg:block">
+        <nav aria-label="Main" className="hidden xl:block">
           <ul className="flex items-center gap-1">
             {mainNav.map((item) =>
               item.children ? (
@@ -82,7 +82,7 @@ export function Header() {
                     aria-expanded={openMenu === item.label}
                     aria-controls={`menu-${item.label}`}
                     onClick={() => setOpenMenu((m) => (m === item.label ? null : item.label))}
-                    className={`flex items-center gap-1.5 rounded-md px-3 py-2 text-[0.9375rem] font-medium transition-colors hover:text-forest-900 ${
+                    className={`flex items-center gap-1.5 rounded-md px-2.5 py-2 text-[0.9375rem] font-medium transition-colors hover:text-forest-900 ${
                       isActive(item.href) ? "text-forest-900" : "text-ink-soft"
                     }`}
                   >
@@ -121,7 +121,7 @@ export function Header() {
                   <Link
                     href={item.href}
                     aria-current={isActive(item.href) ? "page" : undefined}
-                    className={`rounded-md px-3 py-2 text-[0.9375rem] font-medium transition-colors hover:text-forest-900 ${
+                    className={`rounded-md px-2.5 py-2 text-[0.9375rem] font-medium transition-colors hover:text-forest-900 ${
                       isActive(item.href) ? "text-forest-900" : "text-ink-soft"
                     }`}
                   >
@@ -133,10 +133,10 @@ export function Header() {
           </ul>
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-3 xl:flex">
           <Link
             href="/products/inventory-management"
-            className="group inline-flex items-center gap-2 rounded-full border border-line px-3.5 py-1.5 text-sm font-medium text-forest-800 transition-colors hover:border-mint-ink/50"
+            className="group hidden items-center gap-2 rounded-full border border-line px-3.5 py-1.5 text-sm font-medium whitespace-nowrap text-forest-800 2xl:inline-flex transition-colors hover:border-mint-ink/50"
           >
             <span className="size-1.5 rounded-full bg-mint-500" aria-hidden />
             Inventory Software
@@ -148,7 +148,7 @@ export function Header() {
 
         <button
           type="button"
-          className="-mr-2 inline-flex size-11 items-center justify-center rounded-md text-forest-900 lg:hidden"
+          className="-mr-2 inline-flex size-11 items-center justify-center rounded-md text-forest-900 xl:hidden"
           aria-expanded={mobileOpen}
           aria-controls="mobile-menu"
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -165,7 +165,7 @@ export function Header() {
       </div>
 
       {/* Mobile menu */}
-      <div id="mobile-menu" hidden={!mobileOpen} className="h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-line bg-white lg:hidden">
+      <div id="mobile-menu" hidden={!mobileOpen} className="h-[calc(100dvh-4.5rem)] overflow-y-auto border-t border-line bg-white xl:hidden">
         <nav aria-label="Mobile" className="container-x py-6">
           <ul className="space-y-1">
             {mainNav.map((item) => (
@@ -187,11 +187,6 @@ export function Header() {
                 )}
               </li>
             ))}
-            <li className="pt-2">
-              <Link href="/contact" className="block py-1.5 font-display text-lg font-semibold text-forest-900">
-                Contact
-              </Link>
-            </li>
           </ul>
           <div className="mt-8 grid gap-3">
             <ButtonLink href="/contact" variant="dark" size="lg">

@@ -7,7 +7,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Work & Case Studies",
-  description: "Examples of the web, mobile, CRM and business system products Anovate Systems builds.",
+  description: "Examples of the web, mobile, CRM and business system products Anovate System builds.",
   path: "/work",
 });
 

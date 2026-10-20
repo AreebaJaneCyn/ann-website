@@ -111,7 +111,7 @@ export function InquiryForm({ kind = "project", defaultInterest = "", dark = fal
   }
 
   return (
-    <form ref={formRef} onSubmit={onSubmit} noValidate className="space-y-6" aria-label={kind === "product" ? "Inventory software access request" : "Project inquiry"}>
+    <form ref={formRef} onSubmit={onSubmit} noValidate className="space-y-6" aria-label={kind === "product" ? "Inventory software demo request" : "Project inquiry"}>
       {/* Honeypot: hidden from people and assistive tech, attractive to bots */}
       <div aria-hidden className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
         <label>
@@ -210,7 +210,7 @@ export function InquiryForm({ kind = "project", defaultInterest = "", dark = fal
             className="mt-1 size-4 shrink-0 accent-[#015146]"
           />
           <span>
-            I agree that Anovate Systems may use these details to respond to my inquiry, as described in the{" "}
+            I agree that Anovate System may use these details to respond to my inquiry, as described in the{" "}
             <Link href="/privacy" className={`font-medium underline underline-offset-2 ${dark ? "text-mint-400" : "text-mint-ink"}`}>privacy policy</Link>.
           </span>
         </label>
@@ -224,7 +224,7 @@ export function InquiryForm({ kind = "project", defaultInterest = "", dark = fal
       )}
 
       <Button type="submit" size="lg" variant={dark ? "primary" : "dark"} arrow disabled={status.state === "sending"} className="w-full sm:w-auto">
-        {status.state === "sending" ? "Sending…" : kind === "product" ? "Request access" : "Send inquiry"}
+        {status.state === "sending" ? "Sending…" : kind === "product" ? "Request a demo" : "Send inquiry"}
       </Button>
     </form>
   );

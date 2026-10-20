@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import { breadcrumbLd } from "@/lib/seo";
+import { FloatingArrows } from "./Illustrations";
 import { ArrowMark } from "./ui/ArrowMark";
 import { JsonLd } from "./ui/JsonLd";
 import { Eyebrow } from "./ui/Section";
@@ -25,8 +26,9 @@ export function PageHero({ eyebrow, title, highlight, lede, crumbs, actions, asi
       <JsonLd data={breadcrumbLd(all)} />
       <div aria-hidden className="bg-grid-dark absolute inset-0 -z-10 [mask-image:linear-gradient(to_bottom,black,transparent_85%)]" />
       <div aria-hidden className="absolute -right-24 -top-10 -z-10 hidden w-[34rem] opacity-[0.12] md:block">
-        <ArrowMark tone="mono" className="w-full text-mint-400" />
+        <ArrowMark tone="mono" className="animate-arrow-float w-full text-mint-400" />
       </div>
+      <FloatingArrows />
       <div aria-hidden className="brand-streak bottom-0 animate-streak" />
       <div className="container-x pb-20 pt-10 sm:pb-24 lg:pb-28">
         <nav aria-label="Breadcrumb">

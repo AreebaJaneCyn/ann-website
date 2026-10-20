@@ -3,7 +3,9 @@ import Link from "next/link";
 import { CapabilityGrid, ProcessSteps, TextLink } from "@/components/Blocks";
 import { CTABand } from "@/components/CTABand";
 import { FAQ } from "@/components/FAQ";
+import { CapabilityMarquee, FloatingArrows } from "@/components/Illustrations";
 import { InventoryMockup } from "@/components/InventoryMockup";
+import { IconTile } from "@/lib/icons";
 import { WorkCard } from "@/components/WorkCard";
 import { ArrowMark } from "@/components/ui/ArrowMark";
 import { ButtonLink } from "@/components/ui/Button";
@@ -67,6 +69,7 @@ export default function HomePage() {
       {/* 1 — Hero */}
       <section className="relative isolate overflow-hidden bg-forest-900 text-white">
         <div aria-hidden className="bg-grid-dark absolute inset-0 -z-20 [mask-image:radial-gradient(ellipse_at_30%_20%,black,transparent_70%)]" />
+        <FloatingArrows count={7} />
         <div className="container-x grid items-center gap-14 pb-24 pt-14 sm:pt-20 lg:grid-cols-[1.08fr_1fr] lg:gap-10 lg:pb-32 lg:pt-24">
           <div className="animate-fade-up">
             <Eyebrow dark>Software engineering partner</Eyebrow>
@@ -75,7 +78,7 @@ export default function HomePage() {
               <span className="text-gradient-mint">From product development to scale.</span>
             </h1>
             <p className="mt-7 max-w-xl text-lg leading-relaxed text-muted-dark sm:text-xl">
-              Anovate Systems provides dedicated engineering talent, custom software, mobile applications and cloud business software,
+              Anovate System provides dedicated engineering talent, custom software, mobile applications and cloud business software,
               so you can build what&apos;s next without building every capability in-house.
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
@@ -94,17 +97,17 @@ export default function HomePage() {
 
           <div className="relative mx-auto w-full max-w-[34rem]">
             <div aria-hidden className="absolute -inset-10 -z-10 rounded-full bg-mint-400/10 blur-3xl" />
-            <div className="relative aspect-square overflow-hidden rounded-[2rem] ring-1 ring-mint-400/20 shadow-[var(--shadow-glow)]">
+            <div className="animate-float relative aspect-square overflow-hidden rounded-[2rem] ring-1 ring-mint-400/20 shadow-[var(--shadow-glow)]">
               <Image
                 src="/brand/anovate-symbol-crop.webp"
-                alt="The Anovate Systems brand symbol: an oversized O-V-A monogram with the signature arrow above the V"
+                alt="The Anovate System brand symbol: an oversized O-V-A monogram with the signature arrow above the V"
                 fill
                 priority
                 sizes="(min-width: 1024px) 34rem, 92vw"
                 className="object-cover"
               />
             </div>
-            <div className="absolute -bottom-8 left-4 right-4 rounded-[var(--radius-lg)] border border-white/10 bg-forest-950/85 p-5 backdrop-blur-md sm:-left-8 sm:right-auto sm:w-72">
+            <div className="animate-pop absolute -bottom-8 left-4 right-4 rounded-[var(--radius-lg)] border border-white/10 bg-forest-950/85 p-5 backdrop-blur-md [animation-delay:0.9s] sm:-left-8 sm:right-auto sm:w-72">
               <p className="text-xs font-semibold uppercase tracking-[0.14em] text-mint-400">Two ways to work with us</p>
               <ul className="mt-3 space-y-2.5 text-sm">
                 <li>
@@ -124,6 +127,8 @@ export default function HomePage() {
         <div aria-hidden className="brand-streak bottom-0 animate-streak" />
       </section>
 
+      <CapabilityMarquee />
+
       {/* 2 — Two paths: services vs subscriptions */}
       <Section tone="light" labelledBy="paths-title">
         <SectionHeading
@@ -133,9 +138,10 @@ export default function HomePage() {
           lede="Some clients need people and expertise to build something specific. Others need software they can start using. We offer both, and we keep them clearly separate."
         />
         <div className="mt-14 grid gap-6 lg:grid-cols-2">
-          <article data-reveal className="group relative flex flex-col overflow-hidden rounded-[var(--radius-xl)] bg-forest-900 p-8 text-white sm:p-10">
+          <article data-reveal className="group hover-lift relative flex flex-col overflow-hidden rounded-[var(--radius-xl)] bg-forest-900 p-8 text-white hover:shadow-[var(--shadow-glow)] sm:p-10">
             <ArrowMark tone="mono" className="absolute -right-10 -top-10 size-56 text-mint-400/[0.07] transition-transform duration-700 group-hover:-translate-y-2 group-hover:translate-x-2" />
-            <p className="text-sm font-semibold text-mint-400">For businesses that need to build</p>
+            <IconTile title="Dedicated teams" dark size="lg" />
+            <p className="mt-6 text-sm font-semibold text-mint-400">For businesses that need to build</p>
             <h3 className="mt-3 text-2xl font-semibold sm:text-3xl">Services &amp; dedicated teams</h3>
             <p className="mt-4 max-w-md leading-relaxed text-muted-dark">
               Staff augmentation, custom software, mobile apps, and CRM and ERP development, delivered with your goals and your processes in mind.
@@ -145,9 +151,10 @@ export default function HomePage() {
               <ButtonLink href="/services" variant="ghost-light">See services</ButtonLink>
             </div>
           </article>
-          <article data-reveal style={{ ["--reveal-delay" as string]: "90ms" }} className="group relative flex flex-col overflow-hidden rounded-[var(--radius-xl)] border border-line bg-mist p-8 sm:p-10">
+          <article data-reveal style={{ ["--reveal-delay" as string]: "90ms" }} className="group hover-lift relative flex flex-col overflow-hidden rounded-[var(--radius-xl)] border border-line bg-mist p-8 hover:shadow-[var(--shadow-lift)] sm:p-10">
             <ArrowMark tone="outline" className="absolute -right-8 -top-8 size-52 text-forest-900/[0.06] transition-transform duration-700 group-hover:-translate-y-2 group-hover:translate-x-2" />
-            <p className="text-sm font-semibold text-mint-ink">For businesses that need software now</p>
+            <IconTile title="Cloud-based access" size="lg" />
+            <p className="mt-6 text-sm font-semibold text-mint-ink">For businesses that need software now</p>
             <h3 className="mt-3 text-2xl font-semibold text-forest-900 sm:text-3xl">Subscription software</h3>
             <p className="mt-4 max-w-md leading-relaxed text-muted">
               Cloud-based products you subscribe to and start using, beginning with {inventoryProduct.name}, our inventory management system.
@@ -181,7 +188,8 @@ export default function HomePage() {
           >
             <Image src="/brand/anovate-symbol-crop-900.webp" alt="" fill sizes="(min-width:1024px) 40vw, 100vw" className="-z-20 object-cover object-[50%_20%] opacity-90 transition-transform duration-[1.2s] group-hover:scale-[1.03]" />
             <div aria-hidden className="absolute inset-0 -z-10 bg-gradient-to-t from-forest-950 via-forest-950/85 via-45% to-forest-950/0" />
-            <p className="text-sm font-semibold text-mint-400">Staff augmentation</p>
+            <IconTile title="Staff augmentation" dark size="lg" />
+            <p className="mt-5 text-sm font-semibold text-mint-400">Staff augmentation</p>
             <h3 className="mt-3 text-2xl font-semibold sm:text-3xl">Dedicated developers and extended teams</h3>
             <p className="mt-4 max-w-md leading-relaxed text-white/75">
               Frontend, backend, full-stack and mobile developers, UI/UX designers and QA engineers who work inside your team, your tools and your time zone overlap.
@@ -198,12 +206,13 @@ export default function HomePage() {
               href={s.href}
               data-reveal
               style={{ ["--reveal-delay" as string]: `${(i + 1) * 70}ms` }}
-              className="group flex flex-col rounded-[var(--radius-xl)] border border-line bg-white p-7 shadow-[var(--shadow-card)] transition-[box-shadow,border-color] duration-300 hover:border-mint-ink/30 hover:shadow-[var(--shadow-lift)]"
+              className="group hover-lift flex flex-col rounded-[var(--radius-xl)] border border-line bg-white p-7 shadow-[var(--shadow-card)] hover:border-mint-ink/30 hover:shadow-[var(--shadow-lift)]"
             >
               <div className="flex items-start justify-between gap-4">
-                <h3 className="text-xl font-semibold text-forest-900">{s.title}</h3>
+                <IconTile title={s.title.charAt(0).toUpperCase() + s.title.slice(1)} />
                 <ArrowMark tone="mono" className="arrow-nudge mt-1 size-4 shrink-0 text-mint-ink" />
               </div>
+              <h3 className="mt-5 text-xl font-semibold text-forest-900">{s.title}</h3>
               <p className="mt-3 leading-relaxed text-muted">{s.body}</p>
               <ul className="mt-5 flex flex-wrap gap-2">
                 {s.tags.map((t) => (
@@ -217,7 +226,8 @@ export default function HomePage() {
       </Section>
 
       {/* 4 — Featured subscription product */}
-      <Section tone="deep" labelledBy="product-title" className="!overflow-visible">
+      <Section tone="deep" labelledBy="product-title">
+        <FloatingArrows count={5} />
         <div aria-hidden className="pointer-events-none absolute right-0 top-1/3 -z-10 h-[30rem] w-[30rem] rounded-full bg-mint-400/10 blur-[120px]" />
         <div className="grid items-center gap-14 lg:grid-cols-[1fr_1.15fr]">
           <div>
@@ -242,9 +252,7 @@ export default function HomePage() {
               <ButtonLink href={`${inventoryProduct.href}#plans`} variant="secondary" size="lg">{site.cta.plans}</ButtonLink>
             </div>
           </div>
-          <div data-reveal>
-            <InventoryMockup />
-          </div>
+          <InventoryMockup className="animate-float [animation-duration:9s]" />
         </div>
       </Section>
 
@@ -254,7 +262,7 @@ export default function HomePage() {
           <div className="lg:sticky lg:top-28 lg:self-start">
             <SectionHeading
               id="why-title"
-              eyebrow="Why Anovate Systems"
+              eyebrow="Why Anovate System"
               title="A partner that adapts to how you build."
               lede="Good software comes from clear communication, the right people and a long-term view. That's how we approach every engagement."
             />
@@ -262,8 +270,8 @@ export default function HomePage() {
           </div>
           <ol className="divide-y divide-line border-y border-line">
             {reasons.map((r, i) => (
-              <li key={r.title} data-reveal className="group grid grid-cols-[3rem_1fr] gap-4 py-7 sm:grid-cols-[4rem_1fr]">
-                <span className="font-display text-sm font-semibold text-mint-ink">{String(i + 1).padStart(2, "0")}</span>
+              <li key={r.title} data-reveal="right" style={{ ["--reveal-delay" as string]: `${i * 70}ms` }} className="group grid grid-cols-[3rem_1fr] gap-4 py-7 sm:grid-cols-[4rem_1fr]">
+                <IconTile title={r.title} size="sm" />
                 <div>
                   <h3 className="flex items-center gap-3 text-xl font-semibold text-forest-900">
                     {r.title}
@@ -291,6 +299,7 @@ export default function HomePage() {
 
       {/* 7 — Industries */}
       <Section tone="dark" labelledBy="industries-title">
+        <FloatingArrows count={4} />
         <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
           <SectionHeading
             dark

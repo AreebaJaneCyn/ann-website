@@ -6,22 +6,25 @@
  * unverified is published. Fill these in once confirmed.
  */
 export const site = {
-  name: "Anovate Systems",
+  name: "Anovate System",
   legalName: null as string | null,
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.anovatesystems.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.anovatesystem.com",
   tagline: "Software engineering, dedicated teams and cloud business software.",
   description:
-    "Anovate Systems is a software development company providing dedicated engineering teams, custom software, mobile apps, CRM and ERP development, and cloud inventory management software for businesses in the US, UAE and Pakistan.",
+    "Anovate System is a software development company providing dedicated engineering teams, custom software, mobile apps, CRM and ERP development, and cloud inventory management software for businesses in the US, UAE and Pakistan.",
   markets: ["United States", "United Arab Emirates", "Pakistan"],
 
   contact: {
-    email: null as string | null,
+    email: "info@anovatesystem.com" as string | null,
     phone: null as string | null,
     /** Only list locations that are real, registered or staffed offices. */
     offices: [] as { label: string; address: string }[],
     /** Publish only if the team can consistently meet it, e.g. "within one business day". */
     responseTime: null as string | null,
   },
+
+  /** Calendly scheduling page for product demos, e.g. https://calendly.com/anovate/inventory-demo */
+  calendlyUrl: process.env.NEXT_PUBLIC_CALENDLY_URL || null,
 
   social: {
     linkedin: null as string | null,
@@ -34,6 +37,7 @@ export const site = {
     solutions: "Explore Our Solutions",
     inventory: "Explore Inventory Software",
     plans: "View Plans",
+    demo: "Book a Demo",
   },
 } as const;
 
@@ -69,6 +73,7 @@ export const mainNav: NavGroup[] = [
   { label: "Industries", href: "/industries" },
   { label: "About", href: "/about" },
   { label: "Insights", href: "/insights" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const footerNav: { title: string; links: NavItem[] }[] = [

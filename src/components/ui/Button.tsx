@@ -6,7 +6,7 @@ type Variant = "primary" | "secondary" | "dark" | "ghost-light" | "ghost-dark" |
 type Size = "md" | "lg";
 
 const base =
-  "group inline-flex items-center justify-center gap-2.5 rounded-[var(--radius-md)] font-semibold tracking-tight transition-[background-color,color,box-shadow,border-color] duration-300 disabled:cursor-not-allowed disabled:opacity-60";
+  "group inline-flex shrink-0 items-center justify-center gap-2.5 whitespace-nowrap rounded-[var(--radius-md)] font-semibold tracking-tight transition-[background-color,color,box-shadow,border-color] duration-300 disabled:cursor-not-allowed disabled:opacity-60";
 
 const variants: Record<Variant, string> = {
   // Mint on deep green, the logo's own pairing

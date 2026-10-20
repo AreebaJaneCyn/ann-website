@@ -1,12 +1,12 @@
 import { CTABand } from "@/components/CTABand";
 import { PageHero } from "@/components/PageHero";
-import { ArrowMark } from "@/components/ui/ArrowMark";
+import { IconTile } from "@/lib/icons";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "Insights",
-  description: "Practical articles on software development, staff augmentation, mobile apps, business systems and inventory management from Anovate Systems.",
+  description: "Practical articles on software development, staff augmentation, mobile apps, business systems and inventory management from Anovate System.",
   path: "/insights",
 });
 
@@ -33,8 +33,8 @@ export default function InsightsPage() {
         <SectionHeading id="topics-title" eyebrow="Coming soon" title="Topics we'll cover" lede="We're preparing our first articles. Here's what to expect." />
         <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {topics.map((t) => (
-            <li key={t.title} data-reveal className="rounded-[var(--radius-lg)] border border-dashed border-forest-900/20 p-7">
-              <ArrowMark tone="mono" className="size-4 text-mint-ink" />
+            <li key={t.title} data-reveal className="group hover-lift rounded-[var(--radius-lg)] border border-dashed border-forest-900/20 p-7 hover:border-solid hover:shadow-[var(--shadow-lift)]">
+              <IconTile title={t.title} />
               <h2 className="mt-4 text-lg font-semibold text-forest-900">{t.title}</h2>
               <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted">{t.body}</p>
             </li>

@@ -6,6 +6,9 @@ import { site } from "@/content/site";
 import { serviceLd } from "@/lib/seo";
 import { CapabilityGrid, ProcessSteps } from "./Blocks";
 import { CTABand } from "./CTABand";
+import { CodeEditor, OpsFlow, PhoneDuo, PipelineBoard, TeamNetwork } from "./Illustrations";
+import { TimezoneClocks } from "./TimezoneClocks";
+import { IconTile } from "@/lib/icons";
 import { FAQ } from "./FAQ";
 import { PageHero } from "./PageHero";
 import { ArrowMark } from "./ui/ArrowMark";
@@ -14,6 +17,14 @@ import { JsonLd } from "./ui/JsonLd";
 import { Section, SectionHeading } from "./ui/Section";
 
 type Props = { page: ServicePage; parent: { name: string; path: string } };
+
+const heroArt: Record<string, React.ReactNode> = {
+  "staff-augmentation": <TeamNetwork />,
+  "custom-software-development": <CodeEditor />,
+  "mobile-app-development": <PhoneDuo />,
+  crm: <PipelineBoard />,
+  erp: <OpsFlow />,
+};
 
 export function ServiceTemplate({ page, parent }: Props) {
   const contactHref = `/contact?interest=${page.cta.interest}`;
@@ -28,6 +39,7 @@ export function ServiceTemplate({ page, parent }: Props) {
         highlight={page.hero.highlight}
         lede={page.hero.lede}
         crumbs={[parent, { name: page.label, path: page.path }]}
+        aside={heroArt[page.slug]}
         actions={
           <>
             <ButtonLink href={contactHref} size="lg">{page.slug === "staff-augmentation" ? site.cta.consult : site.cta.project}</ButtonLink>
@@ -43,8 +55,9 @@ export function ServiceTemplate({ page, parent }: Props) {
           {page.problems && (
             <ul className="grid gap-5 sm:grid-cols-2">
               {page.problems.map((p, i) => (
-                <li key={p.title} data-reveal style={{ ["--reveal-delay" as string]: `${i * 70}ms` }} className="rounded-[var(--radius-lg)] border border-line bg-mist p-6">
-                  <h3 className="font-sans text-base font-semibold text-forest-900">{p.title}</h3>
+                <li key={p.title} data-reveal style={{ ["--reveal-delay" as string]: `${i * 70}ms` }} className="group hover-lift rounded-[var(--radius-lg)] border border-line bg-mist p-6 hover:shadow-[var(--shadow-lift)]">
+                  <IconTile title={p.title} />
+                  <h3 className="mt-4 font-sans text-base font-semibold text-forest-900">{p.title}</h3>
                   <p className="mt-2 text-[0.9375rem] leading-relaxed text-muted">{p.body}</p>
                 </li>
               ))}
@@ -84,11 +97,12 @@ export function ServiceTemplate({ page, parent }: Props) {
             <SectionHeading dark id="models-title" eyebrow="Engagement models" title="Choose how you want to work with us." lede="Every model can change as your needs do. Start small, scale up, or move between models over time." />
             <div className="mt-14 grid gap-5 md:grid-cols-2">
               {page.models.map((m, i) => (
-                <article key={m.title} data-reveal style={{ ["--reveal-delay" as string]: `${i * 70}ms` }} className="group rounded-[var(--radius-lg)] border border-white/10 bg-forest-950/60 p-7 backdrop-blur-sm transition-colors hover:border-mint-400/40">
+                <article key={m.title} data-reveal style={{ ["--reveal-delay" as string]: `${i * 70}ms` }} className="group hover-lift rounded-[var(--radius-lg)] border border-white/10 bg-forest-950/60 p-7 backdrop-blur-sm hover:border-mint-400/40">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-xl font-semibold">{m.title}</h3>
+                    <IconTile title={m.title} dark size="lg" />
                     <ArrowMark className="arrow-nudge size-4" />
                   </div>
+                  <h3 className="mt-5 text-xl font-semibold">{m.title}</h3>
                   <p className="mt-3 leading-relaxed text-muted-dark">{m.body}</p>
                 </article>
               ))}
@@ -117,6 +131,11 @@ export function ServiceTemplate({ page, parent }: Props) {
             <div className="max-w-3xl">
               <h2 id="note-title" className="text-2xl font-semibold text-forest-900 sm:text-3xl">{page.note.title}</h2>
               <p className="mt-4 text-lg leading-relaxed text-muted">{page.note.body}</p>
+              {page.slug === "staff-augmentation" && (
+                <div className="mt-10">
+                  <TimezoneClocks dark={false} />
+                </div>
+              )}
               {(page.slug === "crm" || page.slug === "erp") && (
                 <p className="mt-6">
                   <Link href="/products/inventory-management" className="font-semibold text-mint-ink underline underline-offset-4">

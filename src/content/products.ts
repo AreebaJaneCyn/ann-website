@@ -26,7 +26,7 @@ export type Product = {
   category: string;
   summary: string;
   href: string;
-  /** External signup URL for the live product. When missing, CTAs route to the access request form. */
+  /** External signup URL for the live product. When missing, CTAs route to demo booking. */
   signupUrl: string | null;
   demoUrl: string | null;
   trial: string | null;

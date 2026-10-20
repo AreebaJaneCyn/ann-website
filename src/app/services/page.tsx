@@ -1,5 +1,6 @@
 import { CapabilityGrid } from "@/components/Blocks";
 import { CTABand } from "@/components/CTABand";
+import { CapabilityStack } from "@/components/Illustrations";
 import { PageHero } from "@/components/PageHero";
 import { ServiceRows } from "@/components/ServiceRows";
 import { ButtonLink } from "@/components/ui/Button";
@@ -11,7 +12,7 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Software Development Services",
   description:
-    "Staff augmentation, custom software development, mobile app development, and CRM and ERP development services from Anovate Systems.",
+    "Staff augmentation, custom software development, mobile app development, and CRM and ERP development services from Anovate System.",
   path: "/services",
 });
 
@@ -27,6 +28,7 @@ export default function ServicesPage() {
         highlight="every stage of your product."
         lede="Whether you need extra hands on an existing team or a partner to deliver a complete system, our services are built to fit around your business."
         crumbs={[{ name: "Services", path: "/services" }]}
+        aside={<CapabilityStack />}
         actions={<ButtonLink href="/contact" size="lg">{site.cta.project}</ButtonLink>}
       />
       <Section tone="light" labelledBy="list-title">

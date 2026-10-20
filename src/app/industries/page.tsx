@@ -1,6 +1,7 @@
 import { CTABand } from "@/components/CTABand";
 import { PageHero } from "@/components/PageHero";
 import { ArrowMark } from "@/components/ui/ArrowMark";
+import { IconTile } from "@/lib/icons";
 import { ButtonLink } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { industries } from "@/content/industries";
@@ -34,9 +35,12 @@ export default function IndustriesPage() {
         />
         <ul className="mt-14 grid gap-6 md:grid-cols-2">
           {industries.map((ind, i) => (
-            <li key={ind.slug} id={ind.slug} data-reveal style={{ ["--reveal-delay" as string]: `${(i % 2) * 80}ms` }} className="group rounded-[var(--radius-xl)] border border-line bg-white p-8 shadow-[var(--shadow-card)] transition-shadow hover:shadow-[var(--shadow-lift)]">
+            <li key={ind.slug} id={ind.slug} data-reveal style={{ ["--reveal-delay" as string]: `${(i % 2) * 80}ms` }} className="group hover-lift rounded-[var(--radius-xl)] border border-line bg-white p-8 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-lift)]">
               <div className="flex items-start justify-between gap-4">
-                <h2 className="text-2xl font-semibold text-forest-900">{ind.title}</h2>
+                <div className="flex items-center gap-4">
+                  <IconTile title={ind.title} size="lg" />
+                  <h2 className="text-2xl font-semibold text-forest-900">{ind.title}</h2>
+                </div>
                 <ArrowMark tone="mono" className="arrow-nudge mt-2 size-4 shrink-0 text-mint-ink" />
               </div>
               <p className="mt-3 leading-relaxed text-muted">{ind.body}</p>

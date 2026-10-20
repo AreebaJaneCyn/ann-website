@@ -5,10 +5,11 @@ import { Section } from "@/components/ui/Section";
 import { site } from "@/content/site";
 import { pageMetadata } from "@/lib/seo";
 import Link from "next/link";
+import { Mail } from "lucide-react";
 
 export const metadata = pageMetadata({
   title: "Contact Us — Discuss Your Project",
-  description: "Tell Anovate Systems about your project, team needs or software requirements. Staff augmentation, custom software, mobile apps, CRM, ERP and inventory software.",
+  description: "Tell Anovate System about your project, team needs or software requirements. Staff augmentation, custom software, mobile apps, CRM, ERP and inventory software.",
   path: "/contact",
 });
 
@@ -51,16 +52,24 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
             </div>
             <div className="rounded-[var(--radius-lg)] bg-forest-900 p-7 text-white">
               <p className="font-semibold">Looking for inventory software?</p>
-              <p className="mt-2 text-sm leading-relaxed text-muted-dark">See features and plans, and request access directly from the product page.</p>
-              <Link href="/products/inventory-management#get-started" className="group mt-5 inline-flex items-center gap-2 text-sm font-semibold text-mint-400">
-                Go to Anovate Inventory <ArrowMark className="arrow-nudge size-3" />
+              <p className="mt-2 text-sm leading-relaxed text-muted-dark">See features and plans, and book a live demo from the product page.</p>
+              <Link href="/products/inventory-management#book-demo" className="group mt-5 inline-flex items-center gap-2 text-sm font-semibold text-mint-400">
+                Book an inventory demo <ArrowMark className="arrow-nudge size-3" />
               </Link>
             </div>
-            {(site.contact.email || site.contact.phone || site.contact.offices.length > 0) && (
+            {site.contact.email && (
+              <a href={`mailto:${site.contact.email}`} className="group hover-lift flex items-center gap-4 rounded-[var(--radius-lg)] border border-line p-5 hover:shadow-[var(--shadow-lift)]">
+                <span className="icon-tile grid size-11 place-items-center rounded-xl bg-forest-900 text-mint-400"><Mail className="size-5 transition-transform duration-500" strokeWidth={1.75} /></span>
+                <span>
+                  <span className="block text-sm font-semibold text-forest-900">Email us directly</span>
+                  <span className="text-mint-ink underline-offset-2 group-hover:underline">{site.contact.email}</span>
+                </span>
+              </a>
+            )}
+            {(site.contact.phone || site.contact.offices.length > 0) && (
               <div>
                 <h2 className="text-lg font-semibold text-forest-900">Contact details</h2>
                 <dl className="mt-4 space-y-3 text-muted">
-                  {site.contact.email && (<div><dt className="text-sm font-semibold text-forest-900">Email</dt><dd><a className="text-mint-ink underline" href={`mailto:${site.contact.email}`}>{site.contact.email}</a></dd></div>)}
                   {site.contact.phone && (<div><dt className="text-sm font-semibold text-forest-900">Phone</dt><dd>{site.contact.phone}</dd></div>)}
                   {site.contact.offices.map((o) => (<div key={o.label}><dt className="text-sm font-semibold text-forest-900">{o.label}</dt><dd>{o.address}</dd></div>))}
                 </dl>

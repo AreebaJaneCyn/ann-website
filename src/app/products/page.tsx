@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CTABand } from "@/components/CTABand";
+import { InventoryMockup } from "@/components/InventoryMockup";
 import { PageHero } from "@/components/PageHero";
 import { ArrowMark } from "@/components/ui/ArrowMark";
 import { ButtonLink } from "@/components/ui/Button";
@@ -10,7 +11,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
   title: "SaaS Products — Cloud Business Software",
-  description: "Subscription-based, cloud software from Anovate Systems, including Anovate Inventory for product-based businesses.",
+  description: "Subscription-based, cloud software from Anovate System, including Anovate Inventory for product-based businesses.",
   path: "/products",
 });
 
@@ -23,6 +24,7 @@ export default function ProductsPage() {
         highlight="subscribe to and start using."
         lede="Our growing portfolio of subscription-based software, built for businesses that want dependable tools without managing servers or custom builds."
         crumbs={[{ name: "Products", path: "/products" }]}
+        aside={<InventoryMockup screen="products" className="animate-float [animation-duration:9s]" />}
         actions={<ButtonLink href="/products/inventory-management" size="lg">{site.cta.inventory}</ButtonLink>}
       />
       <Section tone="light" labelledBy="dir-title">
@@ -30,7 +32,7 @@ export default function ProductsPage() {
         <ul className="mt-12 grid gap-6 md:grid-cols-2">
           {products.map((p) => (
             <li key={p.slug} data-reveal>
-              <Link href={p.href} className="group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-xl)] bg-forest-900 p-8 text-white transition-shadow hover:shadow-[var(--shadow-glow)] sm:p-10">
+              <Link href={p.href} className="group hover-lift relative flex h-full flex-col overflow-hidden rounded-[var(--radius-xl)] bg-forest-900 p-8 text-white hover:shadow-[var(--shadow-glow)] sm:p-10">
                 <ArrowMark tone="mono" className="absolute -right-8 -top-8 size-48 text-mint-400/[0.08] transition-transform duration-700 group-hover:-translate-y-2 group-hover:translate-x-2" />
                 <span className="inline-flex w-fit items-center gap-2 rounded-full bg-mint-400/15 px-3 py-1 text-xs font-semibold text-mint-300">
                   <span className="size-1.5 rounded-full bg-mint-400" /> Available

@@ -1,12 +1,11 @@
 import type { Product } from "@/content/products";
 
 /**
- * Subscription CTA for a product. Until a live signup/billing flow exists
- * (signupUrl), the CTA honestly routes to an access request instead of a
- * button that pretends to start a subscription.
+ * Primary CTA for a product. Until a live self-serve signup exists (signupUrl),
+ * prospects book a demo (Calendly) or request one via the form.
  */
 export function productCta(p: Product) {
   return p.signupUrl
     ? { label: "Start subscription", href: p.signupUrl, external: true }
-    : { label: "Request access", href: `${p.href}#get-started`, external: false };
+    : { label: "Book a Demo", href: `${p.href}#book-demo`, external: false };
 }
