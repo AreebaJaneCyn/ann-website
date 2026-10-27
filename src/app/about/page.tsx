@@ -4,6 +4,8 @@ import { CTABand } from "@/components/CTABand";
 import { FloatingArrows } from "@/components/Illustrations";
 import { PageHero } from "@/components/PageHero";
 import { TimezoneClocks } from "@/components/TimezoneClocks";
+import { TeamCard } from "@/components/SocialProof";
+import { team } from "@/content/team";
 import { ButtonLink } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { site } from "@/content/site";
@@ -57,6 +59,13 @@ export default function AboutPage() {
       <Section tone="mist" labelledBy="principles-title">
         <SectionHeading id="principles-title" eyebrow="How we work" title="The principles behind our work" />
         <div className="mt-12"><CapabilityGrid items={principles} columns={4} /></div>
+      </Section>
+      <Section tone="light" id="team" labelledBy="team-title">
+        <SectionHeading id="team-title" eyebrow="Our people" title="Meet our team" lede="The engineers, designers and delivery leads who plan, build and support our clients' products." />
+        <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {team.map((m, i) => <TeamCard key={m.name} m={m} i={i} />)}
+        </ul>
+        {team.some((m) => m.placeholder) && <p className="mt-6 text-xs text-muted">Placeholder profiles. Team photos and names will be updated.</p>}
       </Section>
       <Section tone="deep" labelledBy="tz-title" grid>
         <FloatingArrows count={4} />

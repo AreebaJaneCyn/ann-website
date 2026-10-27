@@ -41,10 +41,11 @@ export const site = {
   },
 } as const;
 
-export type NavItem = { label: string; href: string; description?: string };
+export type NavItem = { label: string; href: string; description?: string; group?: string };
 export type NavGroup = NavItem & { children?: NavItem[] };
 
 export const mainNav: NavGroup[] = [
+  { label: "Home", href: "/" },
   {
     label: "Services",
     href: "/services",
@@ -52,14 +53,8 @@ export const mainNav: NavGroup[] = [
       { label: "Staff Augmentation", href: "/services/staff-augmentation", description: "Dedicated developers and extended teams" },
       { label: "Custom Software", href: "/services/custom-software-development", description: "Web apps, SaaS, APIs and automation" },
       { label: "Mobile App Development", href: "/services/mobile-app-development", description: "iOS, Android, Flutter and React Native" },
-    ],
-  },
-  {
-    label: "Solutions",
-    href: "/solutions",
-    children: [
-      { label: "CRM Development", href: "/solutions/crm", description: "Sales pipelines, customer records, reporting" },
-      { label: "ERP Development", href: "/solutions/erp", description: "Operations, purchasing and business data" },
+      { label: "CRM Development", href: "/solutions/crm", description: "Sales pipelines, customer records, reporting", group: "Solutions" },
+      { label: "ERP Development", href: "/solutions/erp", description: "Operations, purchasing and business data", group: "Solutions" },
     ],
   },
   {

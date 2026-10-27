@@ -6,7 +6,11 @@ import { FAQ } from "@/components/FAQ";
 import { CapabilityMarquee, FloatingArrows } from "@/components/Illustrations";
 import { InventoryMockup } from "@/components/InventoryMockup";
 import { IconTile } from "@/lib/icons";
+import { AwardBadge, PartnerSlider, TeamCard } from "@/components/SocialProof";
+import { Testimonials } from "@/components/Testimonials";
 import { WorkCard } from "@/components/WorkCard";
+import { awards, partners, testimonials } from "@/content/social-proof";
+import { team } from "@/content/team";
 import { ArrowMark } from "@/components/ui/ArrowMark";
 import { ButtonLink } from "@/components/ui/Button";
 import { Eyebrow, Section, SectionHeading } from "@/components/ui/Section";
@@ -166,6 +170,19 @@ export default function HomePage() {
           </article>
         </div>
       </Section>
+
+      {/* Partners & clients slider */}
+      <section aria-labelledby="partners-title" className="on-light border-y border-line bg-paper py-14">
+        <div className="container-x">
+          <p id="partners-title" className="text-center text-sm font-semibold uppercase tracking-[0.16em] text-muted">
+            Trusted by teams and partners
+          </p>
+        </div>
+        <div className="mt-8"><PartnerSlider partners={partners} /></div>
+        {partners.some((p) => p.placeholder) && (
+          <p className="mt-6 text-center text-xs text-muted">Placeholder logos. Client and partner logos will appear here with permission.</p>
+        )}
+      </section>
 
       {/* 3 — Services overview */}
       <Section tone="mist" id="services" labelledBy="services-title">
@@ -340,6 +357,40 @@ export default function HomePage() {
         <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {work.map((w) => <WorkCard key={w.slug} item={w} />)}
         </div>
+      </Section>
+
+      {/* Testimonials */}
+      <Section tone="mist" labelledBy="testimonials-title">
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.6fr] lg:items-center">
+          <SectionHeading
+            id="testimonials-title"
+            eyebrow="Testimonials"
+            title="What our clients say"
+            lede="Feedback from the founders, technology leaders and operations teams we work with."
+          />
+          <div data-reveal><Testimonials items={testimonials} /></div>
+        </div>
+      </Section>
+
+      {/* Awards & recognition */}
+      <Section tone="deep" labelledBy="awards-title">
+        <FloatingArrows count={4} />
+        <SectionHeading dark align="center" id="awards-title" eyebrow="Recognition" title="Awards & recognition" lede="Independent platforms where our work and client reviews are recognised." />
+        <ul className="mx-auto mt-14 grid max-w-5xl gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {awards.map((aw, i) => <AwardBadge key={aw.platform} award={aw} i={i} />)}
+        </ul>
+      </Section>
+
+      {/* Team preview */}
+      <Section tone="light" labelledBy="team-title">
+        <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
+          <SectionHeading id="team-title" eyebrow="Our people" title="Meet our team" lede="The engineers, designers and delivery leads behind your product." />
+          <div data-reveal><TextLink href="/about#team">Meet the full team</TextLink></div>
+        </div>
+        <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {team.slice(0, 4).map((m, i) => <TeamCard key={m.name} m={m} i={i} />)}
+        </ul>
+        {team.some((m) => m.placeholder) && <p className="mt-6 text-xs text-muted">Placeholder profiles. Team photos and names will be updated.</p>}
       </Section>
 
       {/* 9 — FAQ */}

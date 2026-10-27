@@ -2,6 +2,7 @@ import { CTABand } from "@/components/CTABand";
 import { PageHero } from "@/components/PageHero";
 import { ArrowMark } from "@/components/ui/ArrowMark";
 import { IconTile } from "@/lib/icons";
+import { IndustryScene } from "@/components/IndustryScenes";
 import { ButtonLink } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { industries } from "@/content/industries";
@@ -35,7 +36,17 @@ export default function IndustriesPage() {
         />
         <ul className="mt-14 grid gap-6 md:grid-cols-2">
           {industries.map((ind, i) => (
-            <li key={ind.slug} id={ind.slug} data-reveal style={{ ["--reveal-delay" as string]: `${(i % 2) * 80}ms` }} className="group hover-lift rounded-[var(--radius-xl)] border border-line bg-white p-8 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-lift)]">
+            <li key={ind.slug} id={ind.slug} data-reveal style={{ ["--reveal-delay" as string]: `${(i % 2) * 80}ms` }} tabIndex={0} className="group hover-lift overflow-hidden rounded-[var(--radius-xl)] border border-line bg-white shadow-[var(--shadow-card)] outline-none hover:shadow-[var(--shadow-lift)] focus-visible:ring-2 focus-visible:ring-forest-700">
+              {/* Image area: brand pattern by default, industry scene on hover/focus (always shown on touch screens) */}
+              <div className="relative h-52 overflow-hidden bg-forest-900">
+                <div className="swap-a absolute inset-0 grid place-items-center transition-[opacity,transform] duration-700">
+                  <div aria-hidden className="bg-grid-dark absolute inset-0" />
+                  <ArrowMark tone="mono" className="absolute -right-6 -top-6 size-40 text-mint-400/10" />
+                  <IconTile title={ind.title} dark size="lg" className="relative scale-125" />
+                </div>
+                <IndustryScene slug={ind.slug} className="swap-b absolute inset-0 size-full transition-[opacity,transform] duration-700" />
+              </div>
+              <div className="p-8">
               <div className="flex items-start justify-between gap-4">
                 <div className="flex items-center gap-4">
                   <IconTile title={ind.title} size="lg" />
@@ -48,6 +59,7 @@ export default function IndustriesPage() {
               <ul className="mt-3 flex flex-wrap gap-2">
                 {ind.examples.map((e) => <li key={e} className="rounded-full bg-mist px-3 py-1 text-sm text-ink-soft">{e}</li>)}
               </ul>
+              </div>
             </li>
           ))}
         </ul>

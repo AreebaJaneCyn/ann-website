@@ -20,5 +20,5 @@ export default async function Page({ params }: Params) {
   const { slug } = await params;
   const page = SLUGS.includes(slug) ? serviceBySlug(slug) : undefined;
   if (!page) notFound();
-  return <ServiceTemplate page={page} parent={{ name: "Solutions", path: "/solutions" }} />;
+  return <ServiceTemplate page={page} parent={{ name: "Services", path: "/services" }} />;
 }

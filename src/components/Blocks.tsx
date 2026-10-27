@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { tc } from "@/lib/title";
 import type { Block } from "@/content/services";
 import { IconTile, iconFor } from "@/lib/icons";
 import { ArrowMark } from "./ui/ArrowMark";
@@ -25,7 +26,7 @@ export function ProcessSteps({ steps, dark }: { steps: Block[]; dark?: boolean }
               i < steps.length - 1 && <ArrowMark tone="mono" className={`hidden size-3 lg:block ${dark ? "text-mint-400/60" : "text-mint-ink/60"}`} />
             )}
           </div>
-          <h3 className={`mt-5 text-lg font-semibold ${dark ? "text-white" : "text-forest-900"}`}>{s.title}</h3>
+          <h3 className={`mt-5 text-lg font-semibold ${dark ? "text-white" : "text-forest-900"}`}>{tc(s.title)}</h3>
           <p className={`mt-2 text-[0.9375rem] leading-relaxed ${dark ? "text-muted-dark" : "text-muted"}`}>{s.body}</p>
         </li>
       ))}
@@ -50,7 +51,7 @@ export function CapabilityGrid({ items, dark, columns = 3, tail }: { items: Bloc
           ) : (
             <ArrowMark tone={dark ? "mint" : "mono"} className={`arrow-nudge size-4 ${dark ? "" : "text-mint-ink"}`} />
           )}
-          <h3 className={`mt-5 text-lg font-semibold ${dark ? "text-white" : "text-forest-900"}`}>{it.title}</h3>
+          <h3 className={`mt-5 text-lg font-semibold ${dark ? "text-white" : "text-forest-900"}`}>{tc(it.title)}</h3>
           <p className={`mt-2 text-[0.9375rem] leading-relaxed ${dark ? "text-muted-dark" : "text-muted"}`}>{it.body}</p>
         </li>
       ))}

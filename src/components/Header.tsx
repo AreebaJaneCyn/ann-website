@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import { mainNav, site } from "@/content/site";
 import { ArrowMark } from "./ui/ArrowMark";
 import { ButtonLink } from "./ui/Button";
@@ -97,8 +97,14 @@ export function Header() {
                     className="absolute left-1/2 top-full w-[22rem] -translate-x-1/2 pt-3"
                   >
                     <ul className="rounded-[var(--radius-lg)] border border-line bg-white p-2 shadow-[var(--shadow-lift)]">
-                      {item.children.map((c) => (
-                        <li key={c.href}>
+                      {item.children.map((c, ci) => (
+                        <Fragment key={c.href}>
+                        {c.group && c.group !== item.children![ci - 1]?.group && (
+                          <li role="presentation" className="mt-1 border-t border-line px-3 pb-1 pt-3 text-xs font-semibold uppercase tracking-[0.14em] text-mint-ink">
+                            {c.group}
+                          </li>
+                        )}
+                        <li>
                           <Link href={c.href} className="group flex items-start gap-3 rounded-[var(--radius-md)] p-3 transition-colors hover:bg-mist">
                             <ArrowMark tone="mono" className="arrow-nudge mt-1 size-3 shrink-0 text-mint-ink" />
                             <span>
@@ -107,6 +113,7 @@ export function Header() {
                             </span>
                           </Link>
                         </li>
+                        </Fragment>
                       ))}
                       <li className="mt-1 border-t border-line px-3 pb-1 pt-3">
                         <Link href={item.href} className="text-sm font-semibold text-mint-ink hover:underline">
@@ -175,13 +182,18 @@ export function Header() {
                 </Link>
                 {item.children && (
                   <ul className="mt-1 space-y-0.5">
-                    {item.children.map((c) => (
-                      <li key={c.href}>
-                        <Link href={c.href} className="flex items-center gap-2.5 py-2 text-[0.9375rem] text-ink-soft">
-                          <ArrowMark tone="mono" className="size-2.5 text-mint-ink" />
-                          {c.label}
-                        </Link>
-                      </li>
+                    {item.children.map((c, ci) => (
+                      <Fragment key={c.href}>
+                        {c.group && c.group !== item.children![ci - 1]?.group && (
+                          <li role="presentation" className="pb-1 pt-3 text-xs font-semibold uppercase tracking-[0.14em] text-mint-ink">{c.group}</li>
+                        )}
+                        <li>
+                          <Link href={c.href} className="flex items-center gap-2.5 py-2 text-[0.9375rem] text-ink-soft">
+                            <ArrowMark tone="mono" className="size-2.5 text-mint-ink" />
+                            {c.label}
+                          </Link>
+                        </li>
+                      </Fragment>
                     ))}
                   </ul>
                 )}

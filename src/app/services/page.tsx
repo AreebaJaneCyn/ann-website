@@ -16,10 +16,11 @@ export const metadata = pageMetadata({
   path: "/services",
 });
 
-const order = ["staff-augmentation", "custom-software-development", "mobile-app-development", "crm", "erp"];
+const serviceOrder = ["staff-augmentation", "custom-software-development", "mobile-app-development"];
+const solutionOrder = ["crm", "erp"];
 
 export default function ServicesPage() {
-  const items = order.map((s) => services.find((x) => x.slug === s)!);
+  const pick = (slugs: string[]) => slugs.map((s) => services.find((x) => x.slug === s)!);
   return (
     <>
       <PageHero
@@ -32,10 +33,19 @@ export default function ServicesPage() {
         actions={<ButtonLink href="/contact" size="lg">{site.cta.project}</ButtonLink>}
       />
       <Section tone="light" labelledBy="list-title">
-        <h2 id="list-title" className="sr-only">All services</h2>
-        <ServiceRows items={items} />
+        <SectionHeading id="list-title" eyebrow="Services" title="Engineering services" lede="People and delivery capacity to design, build and support your software." />
+        <div className="mt-10"><ServiceRows items={pick(serviceOrder)} /></div>
       </Section>
-      <Section tone="mist" labelledBy="models-title">
+      <Section tone="mist" id="solutions" labelledBy="solutions-title">
+        <SectionHeading
+          id="solutions-title"
+          eyebrow="Solutions"
+          title="Business systems solutions"
+          lede="Custom CRM and ERP development, built around your processes. These are development engagements, not off-the-shelf products; for ready-to-use software, see our subscription products."
+        />
+        <div className="mt-10"><ServiceRows items={pick(solutionOrder)} /></div>
+      </Section>
+      <Section tone="light" labelledBy="models-title">
         <SectionHeading
           id="models-title"
           eyebrow="Engagement models"

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { tc } from "@/lib/title";
 import type { ServicePage } from "@/content/services";
 import { ArrowMark } from "./ui/ArrowMark";
 
@@ -11,7 +12,7 @@ export function ServiceRows({ items }: { items: ServicePage[] }) {
           <Link href={s.path} className="group grid gap-4 py-10 transition-colors sm:grid-cols-[4rem_1fr_auto] sm:items-start sm:gap-8">
             <span className="font-display text-sm font-semibold text-mint-ink">{String(i + 1).padStart(2, "0")}</span>
             <div>
-              <h2 className="text-2xl font-semibold text-forest-900 transition-colors group-hover:text-forest-700 sm:text-3xl">{s.label}</h2>
+              <h3 className="text-2xl font-semibold text-forest-900 transition-colors group-hover:text-forest-700 sm:text-3xl">{s.label}</h3>
               <p className="mt-3 max-w-2xl leading-relaxed text-muted">{s.hero.lede}</p>
               <ul className="mt-5 flex flex-wrap gap-2">
                 {s.capabilities.items.slice(0, 5).map((c) => (

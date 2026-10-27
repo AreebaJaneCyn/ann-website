@@ -283,3 +283,16 @@
 }
 
 @keyframes progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+
+/* Title Case for every heading. Use .keep-case (or tc()) for words like iOS. */
+h1, h2, h3, h4, h5, h6 { text-transform: capitalize; }
+.keep-case { text-transform: none; }
+
+/* Hover image swap (industry cards). Touch screens show the scene directly. */
+.swap-b { opacity: 0; transform: scale(1.06); }
+.group:hover .swap-a, .group:focus-visible .swap-a { opacity: 0; transform: scale(0.94); }
+.group:hover .swap-b, .group:focus-visible .swap-b { opacity: 1; transform: none; }
+@media (hover: none) {
+  .swap-a { opacity: 0; }
+  .swap-b { opacity: 1; transform: none; }
+}

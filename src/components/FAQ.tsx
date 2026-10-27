@@ -1,4 +1,5 @@
 import type { FAQ as FAQItem } from "@/content/services";
+import { tc } from "@/lib/title";
 import { faqLd } from "@/lib/seo";
 import { JsonLd } from "./ui/JsonLd";
 import { Section, SectionHeading, type Tone, isDark } from "./ui/Section";
@@ -16,7 +17,7 @@ export function FAQ({ faqs, title = "Frequently asked questions", eyebrow = "FAQ
           {faqs.map((f) => (
             <details key={f.q} className="group py-1 [&_summary::-webkit-details-marker]:hidden">
               <summary className="flex cursor-pointer list-none items-start justify-between gap-6 py-5">
-                <h3 className={`font-sans text-lg font-semibold leading-snug tracking-tight ${dark ? "text-white" : "text-forest-900"}`}>{f.q}</h3>
+                <h3 className={`font-sans text-lg font-semibold leading-snug tracking-tight ${dark ? "text-white" : "text-forest-900"}`}>{tc(f.q)}</h3>
                 <span
                   aria-hidden
                   className={`mt-0.5 grid size-7 shrink-0 place-items-center rounded-full border transition-transform duration-300 group-open:rotate-45 ${

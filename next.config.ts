@@ -10,6 +10,10 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: { formats: ["image/avif", "image/webp"] },
+  async redirects() {
+    // Solutions now live under Services
+    return [{ source: "/solutions", destination: "/services#solutions", permanent: true }];
+  },
   async headers() {
     return [{ source: "/(.*)", headers: securityHeaders }];
   },

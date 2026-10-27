@@ -27,6 +27,8 @@ npm run build && npm start   # production
 - [ ] Replace the illustrated product preview (`InventoryMockup`, `ProductTour`) with real product screenshots
 - [ ] Optional: swap in real team photography (stock photo hosts are blocked in the build environment, so illustrations are code-drawn in `src/components/Illustrations.tsx`)
 - [ ] Replace sample concepts in `src/content/work.ts` with verified case studies
+- [ ] `src/content/social-proof.ts`: real testimonials (with permission), awards actually received (use the platform's official badge), and partner/client logos you have permission to show
+- [ ] `src/content/team.ts`: real names, roles and photos (with consent)
 - [ ] Legal review of `/privacy`, `/terms`, `/cookies`, then remove `noindex`
 - [ ] Approve the reversed (white) logo variant used on dark backgrounds
 - [ ] Set `NEXT_PUBLIC_SITE_URL` to the production domain

@@ -65,7 +65,7 @@ export default function ProductsPage() {
           </div>
           <div className="flex flex-wrap gap-3 lg:justify-end">
             <ButtonLink href="/services/custom-software-development" variant="dark">Custom software</ButtonLink>
-            <ButtonLink href="/solutions" variant="outline-dark">CRM &amp; ERP</ButtonLink>
+            <ButtonLink href="/services#solutions" variant="outline-dark">CRM &amp; ERP</ButtonLink>
           </div>
         </div>
       </Section>
