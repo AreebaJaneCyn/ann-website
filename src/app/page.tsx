@@ -6,10 +6,13 @@ import { FAQ } from "@/components/FAQ";
 import { CapabilityMarquee, FloatingArrows } from "@/components/Illustrations";
 import { InventoryMockup } from "@/components/InventoryMockup";
 import { IconTile } from "@/lib/icons";
-import { AwardBadge, PartnerSlider, TeamCard } from "@/components/SocialProof";
+import { StockImage } from "@/components/StockImage";
+import { photos } from "@/content/images";
+import { AwardBadge, TeamCard } from "@/components/SocialProof";
+import { TechSlider } from "@/components/TechSlider";
 import { Testimonials } from "@/components/Testimonials";
 import { WorkCard } from "@/components/WorkCard";
-import { awards, partners, testimonials } from "@/content/social-proof";
+import { awards, testimonials } from "@/content/social-proof";
 import { team } from "@/content/team";
 import { ArrowMark } from "@/components/ui/ArrowMark";
 import { ButtonLink } from "@/components/ui/Button";
@@ -35,24 +38,28 @@ const capabilityList = ["Dedicated engineering teams", "Custom software", "Mobil
 const serviceCards = [
   {
     href: "/services/custom-software-development",
+    photo: photos.coding,
     title: "Custom software development",
     body: "Web applications, business software, SaaS products, APIs and workflow automation, built around your processes.",
     tags: ["Web apps", "SaaS", "APIs", "Automation"],
   },
   {
     href: "/services/mobile-app-development",
+    photo: photos.mobile,
     title: "Mobile app development",
     body: "iOS, Android and cross-platform apps with Flutter and React Native, from prototype to app store and beyond.",
     tags: ["iOS", "Android", "Flutter", "React Native"],
   },
   {
     href: "/solutions/crm",
+    photo: photos.meeting,
     title: "CRM development",
     body: "Custom CRM systems for pipelines, customer records, communication workflows and reporting.",
     tags: ["Pipelines", "Customer data", "Reporting"],
   },
   {
     href: "/solutions/erp",
+    photo: photos.analytics,
     title: "ERP development",
     body: "Custom ERP modules and integrations that connect operations, purchasing and business data.",
     tags: ["Operations", "Purchasing", "Integrations"],
@@ -171,17 +178,14 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Partners & clients slider */}
-      <section aria-labelledby="partners-title" className="on-light border-y border-line bg-paper py-14">
+      {/* Platforms & technologies logo slider */}
+      <section aria-labelledby="tech-title" className="on-light border-y border-line bg-paper py-14">
         <div className="container-x">
-          <p id="partners-title" className="text-center text-sm font-semibold uppercase tracking-[0.16em] text-muted">
-            Trusted by teams and partners
+          <p id="tech-title" className="text-center text-sm font-semibold uppercase tracking-[0.16em] text-muted">
+            Platforms &amp; technologies we build with
           </p>
         </div>
-        <div className="mt-8"><PartnerSlider partners={partners} /></div>
-        {partners.some((p) => p.placeholder) && (
-          <p className="mt-6 text-center text-xs text-muted">Placeholder logos. Client and partner logos will appear here with permission.</p>
-        )}
+        <div className="mt-8"><TechSlider /></div>
       </section>
 
       {/* 3 — Services overview */}
@@ -223,8 +227,18 @@ export default function HomePage() {
               href={s.href}
               data-reveal
               style={{ ["--reveal-delay" as string]: `${(i + 1) * 70}ms` }}
-              className="group hover-lift flex flex-col rounded-[var(--radius-xl)] border border-line bg-white p-7 shadow-[var(--shadow-card)] hover:border-mint-ink/30 hover:shadow-[var(--shadow-lift)]"
+              className="group hover-lift flex flex-col overflow-hidden rounded-[var(--radius-xl)] border border-line bg-white p-7 shadow-[var(--shadow-card)] hover:border-mint-ink/30 hover:shadow-[var(--shadow-lift)]"
             >
+              <div className="relative -mx-7 -mt-7 mb-6 h-36 overflow-hidden bg-forest-900">
+                <StockImage
+                  src={s.photo.src}
+                  alt={s.photo.alt}
+                  sizes="(min-width:1024px) 22vw, (min-width:640px) 50vw, 100vw"
+                  className="transition-transform duration-[1.2s] group-hover:scale-105"
+                  fallback={<div className="bg-grid-dark absolute inset-0" />}
+                />
+                <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-forest-950/40 to-transparent" />
+              </div>
               <div className="flex items-start justify-between gap-4">
                 <IconTile title={s.title.charAt(0).toUpperCase() + s.title.slice(1)} />
                 <ArrowMark tone="mono" className="arrow-nudge mt-1 size-4 shrink-0 text-mint-ink" />

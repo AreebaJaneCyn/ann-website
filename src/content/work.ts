@@ -6,6 +6,8 @@
  * Replace with real projects (with client permission) and set `kind: "case-study"`.
  * Never add results, metrics or quotes that cannot be verified.
  */
+import { photos, type Photo } from "./images";
+
 export type WorkItem = {
   slug: string;
   kind: "sample-concept" | "case-study";
@@ -14,6 +16,7 @@ export type WorkItem = {
   summary: string;
   scope: string[];
   visual: "mobile" | "dashboard" | "pipeline" | "inventory";
+  photo: Photo;
 };
 
 export const work: WorkItem[] = [
@@ -25,6 +28,7 @@ export const work: WorkItem[] = [
     summary: "A cross-platform app for technicians to receive jobs, capture site notes and photos, and close work orders on the move.",
     scope: ["Flutter", "Offline-friendly flows", "REST API", "Admin web panel"],
     visual: "mobile",
+    photo: photos.mobile,
   },
   {
     slug: "b2b-sales-crm",
@@ -34,6 +38,7 @@ export const work: WorkItem[] = [
     summary: "A custom pipeline with stages matched to a quote-led sales process, automated follow-ups and a manager reporting view.",
     scope: ["Pipeline stages", "Customer records", "Email integration", "Reporting"],
     visual: "pipeline",
+    photo: photos.meeting,
   },
   {
     slug: "operations-portal",
@@ -43,5 +48,6 @@ export const work: WorkItem[] = [
     summary: "A central portal connecting purchasing requests, approvals and supplier records with an existing accounting system.",
     scope: ["Approval workflows", "Role-based access", "Accounting integration", "Audit trail"],
     visual: "dashboard",
+    photo: photos.dashboard,
   },
 ];

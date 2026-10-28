@@ -1,4 +1,5 @@
 import type { WorkItem } from "@/content/work";
+import { StockImage } from "./StockImage";
 
 function Visual({ kind }: { kind: WorkItem["visual"] }) {
   if (kind === "mobile") {
@@ -64,11 +65,20 @@ function Visual({ kind }: { kind: WorkItem["visual"] }) {
 export function WorkCard({ item }: { item: WorkItem }) {
   return (
     <article data-reveal className="group flex flex-col overflow-hidden rounded-[var(--radius-xl)] border border-line bg-white shadow-[var(--shadow-card)] transition-shadow duration-300 hover:shadow-[var(--shadow-lift)]">
-      <div aria-hidden className="relative h-64 overflow-hidden bg-forest-900">
-        <div className="bg-grid-dark absolute inset-0 opacity-60" />
-        <div className="relative h-full transition-transform duration-700 group-hover:-translate-y-1">
-          <Visual kind={item.visual} />
-        </div>
+      <div className="relative h-64 overflow-hidden bg-forest-900">
+        <StockImage
+          src={item.photo.src}
+          alt={item.photo.alt}
+          sizes="(min-width:1024px) 33vw, (min-width:768px) 50vw, 100vw"
+          className="transition-transform duration-[1.2s] group-hover:scale-105"
+          fallback={
+            <>
+              <div className="bg-grid-dark absolute inset-0 opacity-60" />
+              <div className="relative h-full transition-transform duration-700 group-hover:-translate-y-1"><Visual kind={item.visual} /></div>
+            </>
+          }
+        />
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-gradient-to-t from-forest-950/50 to-transparent" />
       </div>
       <div className="flex flex-1 flex-col p-6 sm:p-7">
         <div className="flex flex-wrap items-center gap-2">

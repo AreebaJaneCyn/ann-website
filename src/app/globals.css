@@ -296,3 +296,4 @@ h1, h2, h3, h4, h5, h6 { text-transform: capitalize; }
   .swap-a { opacity: 0; }
   .swap-b { opacity: 1; transform: none; }
 }
+@keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.08) translate3d(-1%, -1%, 0); } }

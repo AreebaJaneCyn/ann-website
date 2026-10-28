@@ -3,6 +3,8 @@ import { PageHero } from "@/components/PageHero";
 import { ArrowMark } from "@/components/ui/ArrowMark";
 import { IconTile } from "@/lib/icons";
 import { IndustryScene } from "@/components/IndustryScenes";
+import { StockImage } from "@/components/StockImage";
+import { industryPhoto } from "@/content/images";
 import { ButtonLink } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { industries } from "@/content/industries";
@@ -44,7 +46,16 @@ export default function IndustriesPage() {
                   <ArrowMark tone="mono" className="absolute -right-6 -top-6 size-40 text-mint-400/10" />
                   <IconTile title={ind.title} dark size="lg" className="relative scale-125" />
                 </div>
-                <IndustryScene slug={ind.slug} className="swap-b absolute inset-0 size-full transition-[opacity,transform] duration-700" />
+                <div className="swap-b absolute inset-0 transition-[opacity,transform] duration-700">
+                  <StockImage
+                    src={industryPhoto[ind.slug].src}
+                    alt={industryPhoto[ind.slug].alt}
+                    sizes="(min-width:768px) 50vw, 100vw"
+                    fallback={<IndustryScene slug={ind.slug} className="absolute inset-0 size-full" />}
+                  />
+                  <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-forest-950/70 via-forest-950/10 to-transparent" />
+                  <IconTile title={ind.title} dark size="sm" className="absolute bottom-4 left-4 backdrop-blur" />
+                </div>
               </div>
               <div className="p-8">
               <div className="flex items-start justify-between gap-4">

@@ -7,6 +7,8 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { articles } from "@/content/articles";
 import { site } from "@/content/site";
 import { IconTile } from "@/lib/icons";
+import { StockImage } from "@/components/StockImage";
+import { articlePhoto } from "@/content/images";
 import { absoluteUrl, pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -52,9 +54,20 @@ export default function InsightsPage() {
             <p className="mt-4 max-w-xl leading-relaxed text-muted-dark">{featured.answer}</p>
             <span className="mt-8 inline-flex items-center gap-2 font-semibold text-mint-400">Read article · {featured.readingMinutes} min <ArrowMark className="arrow-nudge size-3.5" /></span>
           </div>
-          <div aria-hidden className="relative hidden min-h-64 lg:block">
-            <div className="bg-grid-dark absolute inset-0" />
-            <ArrowMark className="animate-arrow-float absolute left-1/2 top-1/2 size-40 -translate-x-1/2 -translate-y-1/2 opacity-90" />
+          <div className="relative min-h-64 overflow-hidden">
+            <StockImage
+              src={articlePhoto[featured.slug].src}
+              alt={articlePhoto[featured.slug].alt}
+              sizes="(min-width:1024px) 40vw, 100vw"
+              className="transition-transform duration-[1.5s] group-hover:scale-105"
+              fallback={
+                <>
+                  <div className="bg-grid-dark absolute inset-0" />
+                  <ArrowMark className="animate-arrow-float absolute left-1/2 top-1/2 size-40 -translate-x-1/2 -translate-y-1/2 opacity-90" />
+                </>
+              }
+            />
+            <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-forest-900 via-forest-900/20 to-transparent" />
           </div>
         </Link>
 
@@ -63,7 +76,16 @@ export default function InsightsPage() {
           <ul className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {rest.map((a, i) => (
               <li key={a.slug} data-reveal style={{ ["--reveal-delay" as string]: `${(i % 3) * 80}ms` }}>
-                <Link href={`/insights/${a.slug}`} className="group hover-lift flex h-full flex-col rounded-[var(--radius-xl)] border border-line bg-white p-7 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-lift)]">
+                <Link href={`/insights/${a.slug}`} className="group hover-lift flex h-full flex-col overflow-hidden rounded-[var(--radius-xl)] border border-line bg-white p-7 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-lift)]">
+                  <div className="relative -mx-7 -mt-7 mb-6 h-44 overflow-hidden bg-forest-900">
+                    <StockImage
+                      src={articlePhoto[a.slug].src}
+                      alt={articlePhoto[a.slug].alt}
+                      sizes="(min-width:1024px) 30vw, (min-width:768px) 50vw, 100vw"
+                      className="transition-transform duration-[1.2s] group-hover:scale-105"
+                      fallback={<div className="bg-grid-dark absolute inset-0" />}
+                    />
+                  </div>
                   <div className="flex items-center gap-3">
                     <IconTile title={categoryIcon[a.category]} size="sm" />
                     <span className="text-xs font-semibold uppercase tracking-[0.14em] text-mint-ink">{a.category}</span>

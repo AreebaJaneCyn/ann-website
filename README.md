@@ -28,7 +28,8 @@ npm run build && npm start   # production
 - [ ] Optional: swap in real team photography (stock photo hosts are blocked in the build environment, so illustrations are code-drawn in `src/components/Illustrations.tsx`)
 - [ ] Replace sample concepts in `src/content/work.ts` with verified case studies
 - [ ] `src/content/social-proof.ts`: real testimonials (with permission), awards actually received (use the platform's official badge), and partner/client logos you have permission to show
-- [ ] `src/content/team.ts`: real names, roles and photos (with consent)
+- [ ] `src/content/team.ts`: real names, roles and photos (with consent). Current photos are stock models
+- [ ] Review the Unsplash stock photos (`src/content/images.ts`) on the live site and swap any that don't fit; each falls back to an illustration if it fails to load
 - [ ] Legal review of `/privacy`, `/terms`, `/cookies`, then remove `noindex`
 - [ ] Approve the reversed (white) logo variant used on dark backgrounds
 - [ ] Set `NEXT_PUBLIC_SITE_URL` to the production domain

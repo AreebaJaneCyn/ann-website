@@ -5,6 +5,8 @@ import { FloatingArrows } from "@/components/Illustrations";
 import { PageHero } from "@/components/PageHero";
 import { TimezoneClocks } from "@/components/TimezoneClocks";
 import { TeamCard } from "@/components/SocialProof";
+import { StockImage } from "@/components/StockImage";
+import { photos } from "@/content/images";
 import { team } from "@/content/team";
 import { ButtonLink } from "@/components/ui/Button";
 import { Section, SectionHeading } from "@/components/ui/Section";
@@ -52,7 +54,13 @@ export default function AboutPage() {
             </div>
           </div>
           <div data-reveal="right" className="group relative aspect-[4/3] overflow-hidden rounded-[var(--radius-xl)] bg-forest-900">
-            <Image src="/brand/anovate-symbol-crop.webp" alt="Anovate System brand symbol" fill sizes="(min-width:1024px) 45vw, 100vw" className="object-cover object-[50%_40%] transition-transform duration-[1.5s] group-hover:scale-105" />
+            <StockImage
+              src={photos.officeTeam.src}
+              alt={photos.officeTeam.alt}
+              sizes="(min-width:1024px) 45vw, 100vw"
+              className="transition-transform duration-[1.5s] group-hover:scale-105"
+              fallback={<Image src="/brand/anovate-symbol-crop.webp" alt="Anovate System brand symbol" fill sizes="(min-width:1024px) 45vw, 100vw" className="object-cover object-[50%_40%]" />}
+            />
           </div>
         </div>
       </Section>

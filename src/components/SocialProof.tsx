@@ -2,6 +2,7 @@ import { Award as AwardIcon } from "lucide-react";
 import Image from "next/image";
 import type { Award, Partner } from "@/content/social-proof";
 import type { Avatar, Member } from "@/content/team";
+import { StockImage } from "./StockImage";
 import { ArrowMark } from "./ui/ArrowMark";
 
 /* ---------- Illustrated person avatar (placeholder for real team photos) ---------- */
@@ -59,7 +60,13 @@ export function TeamCard({ m, i }: { m: Member; i: number }) {
     <li data-reveal style={{ ["--reveal-delay" as string]: `${(i % 4) * 80}ms` }} className="group hover-lift overflow-hidden rounded-[var(--radius-xl)] border border-line bg-white shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-lift)]">
       <div className="relative aspect-square overflow-hidden bg-mist">
         {m.photo ? (
-          <Image src={m.photo} alt={`${m.name}, ${m.role}`} fill sizes="(min-width:1024px) 25vw, 50vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
+          <StockImage
+            src={m.photo}
+            alt={`${m.name}, ${m.role}`}
+            sizes="(min-width:1024px) 25vw, 50vw"
+            className="object-top transition-transform duration-700 group-hover:scale-105"
+            fallback={<PersonAvatar a={m.avatar} className="size-full" />}
+          />
         ) : (
           <PersonAvatar a={m.avatar} className="size-full transition-transform duration-700 group-hover:scale-105" />
         )}

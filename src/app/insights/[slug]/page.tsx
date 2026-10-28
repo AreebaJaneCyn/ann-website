@@ -11,6 +11,8 @@ import { articleBySlug, articles } from "@/content/articles";
 import { site } from "@/content/site";
 import { absoluteUrl, pageMetadata } from "@/lib/seo";
 import { tc } from "@/lib/title";
+import { StockImage } from "@/components/StockImage";
+import { articlePhoto } from "@/content/images";
 
 export const dynamicParams = false;
 export const generateStaticParams = () => articles.map((a) => ({ slug: a.slug }));
@@ -71,6 +73,10 @@ export default async function ArticlePage({ params }: Params) {
               <span className="inline-flex items-center gap-2"><CalendarDays className="size-4 text-mint-ink" /> <time dateTime={a.updated}>Updated {fmt(a.updated)}</time></span>
               <span className="inline-flex items-center gap-2"><Clock className="size-4 text-mint-ink" /> {a.readingMinutes} min read</span>
               <span>By the {site.name} team</span>
+            </div>
+
+            <div className="relative mt-8 aspect-[16/8] overflow-hidden rounded-[var(--radius-xl)] bg-forest-900">
+              <StockImage src={articlePhoto[a.slug].src} alt={articlePhoto[a.slug].alt} sizes="(min-width:1024px) 48rem, 100vw" priority fallback={<div className="bg-grid-dark absolute inset-0" />} />
             </div>
 
             {/* Direct answer first: what answer engines and skimmers need */}

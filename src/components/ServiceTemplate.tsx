@@ -8,6 +8,8 @@ import { CapabilityGrid, ProcessSteps } from "./Blocks";
 import { CTABand } from "./CTABand";
 import { CodeEditor, OpsFlow, PhoneDuo, PipelineBoard, TeamNetwork } from "./Illustrations";
 import { TimezoneClocks } from "./TimezoneClocks";
+import { HeroPhoto } from "./HeroPhoto";
+import { servicePhoto } from "@/content/images";
 import { IconTile } from "@/lib/icons";
 import { FAQ } from "./FAQ";
 import { PageHero } from "./PageHero";
@@ -17,6 +19,14 @@ import { JsonLd } from "./ui/JsonLd";
 import { Section, SectionHeading } from "./ui/Section";
 
 type Props = { page: ServicePage; parent: { name: string; path: string } };
+
+const heroChips: Record<string, string[]> = {
+  "staff-augmentation": ["Joins your stand-ups", "Your tools, your process"],
+  "custom-software-development": ["API connected", "Deployed to production"],
+  "mobile-app-development": ["iOS & Android", "Ready for the App Store"],
+  crm: ["Pipeline updated", "Follow-up scheduled"],
+  erp: ["One system of record", "Reports in sync"],
+};
 
 const heroArt: Record<string, React.ReactNode> = {
   "staff-augmentation": <TeamNetwork />,
@@ -39,7 +49,7 @@ export function ServiceTemplate({ page, parent }: Props) {
         highlight={page.hero.highlight}
         lede={page.hero.lede}
         crumbs={[parent, { name: page.label, path: page.path }]}
-        aside={heroArt[page.slug]}
+        aside={<HeroPhoto photo={servicePhoto[page.slug]} fallback={heroArt[page.slug]} chips={heroChips[page.slug]} />}
         actions={
           <>
             <ButtonLink href={contactHref} size="lg">{page.slug === "staff-augmentation" ? site.cta.consult : site.cta.project}</ButtonLink>

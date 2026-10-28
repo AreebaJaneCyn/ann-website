@@ -6,6 +6,8 @@ import { FloatingArrows } from "@/components/Illustrations";
 import { InventoryMockup } from "@/components/InventoryMockup";
 import { ProductTour } from "@/components/ProductTour";
 import { IconTile } from "@/lib/icons";
+import { StockImage } from "@/components/StockImage";
+import { photos } from "@/content/images";
 import { PageHero } from "@/components/PageHero";
 import { ArrowMark } from "@/components/ui/ArrowMark";
 import { ButtonLink } from "@/components/ui/Button";
@@ -130,6 +132,11 @@ export default function InventoryPage() {
       {/* Audiences */}
       <Section tone="light" labelledBy="for-title">
         <SectionHeading id="for-title" eyebrow="Who it's for" title="Built for businesses that move physical products." />
+        <div data-reveal className="relative mt-10 h-64 overflow-hidden rounded-[var(--radius-xl)] bg-forest-900 sm:h-80">
+          <StockImage src={photos.warehouse.src} alt={photos.warehouse.alt} sizes="100vw" className="animate-[kenburns_18s_ease-in-out_infinite_alternate]" fallback={<div className="bg-grid-dark absolute inset-0" />} />
+          <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-forest-950/80 via-forest-950/30 to-transparent" />
+          <p className="absolute bottom-6 left-6 max-w-sm font-display text-2xl font-semibold text-white sm:bottom-8 sm:left-8 sm:text-3xl">One shared record of every product you hold.</p>
+        </div>
         <ul className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {inventoryAudiences.map((a, i) => (
             <li key={a.title} data-reveal style={{ ["--reveal-delay" as string]: `${(i % 4) * 60}ms` }} className="group hover-lift rounded-[var(--radius-lg)] border border-line p-6 hover:border-mint-ink/40 hover:shadow-[var(--shadow-lift)]">
